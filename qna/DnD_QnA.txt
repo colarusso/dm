@@ -1,6 +1,6 @@
 After:
 <script src="https://colarusso.github.io/dm/js/srd_5e_monsters.js" type="text/javascript"></script>
-<script src="https://colarusso.github.io/dmjs/functions.js" type="text/javascript"></script>
+<script src="https://colarusso.github.io/dm/js/functions.js" type="text/javascript"></script>
 <style>
 .dice {
 	font-size:80px;
