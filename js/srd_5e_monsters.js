@@ -1,4 +1,4 @@
-monsters = [
+var monsters = [
   {
     "name": "Aboleth",
     "meta": "Large aberration, lawful evil",

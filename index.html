@@ -1,0 +1,1391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:og="http://ogp.me/ns#"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+<HEAD>
+	<title>Untitled QnA</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content=""/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="apple-touch-icon" href="https://www.qnamarkup.org/images/QnA_300.png"/>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+  	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+</HEAD>
+<BODY BGCOLOR="#ffffff" BACKGROUND="" MARGINWIDTH="0" MARGINHEIGHT="0" onLoad="startAT('1');"><style>
+
+	body {
+
+		font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+
+	}
+
+
+
+	#rawmarkup{
+
+		display:none;
+
+	}
+
+
+
+	#QandA img{
+
+		width:100%;
+
+	}
+
+
+
+	div.main{
+
+		min-width:300px;
+
+		max-width:650px;
+
+		margin: 0 auto;
+
+	padding:0 5px 0 5px;
+
+		}
+
+	div.frame{
+
+		float:left;
+
+		width:100%;
+
+		margin:5px 0 5px 0;
+
+	}
+
+	div.full{
+
+		float:left;
+
+		width:100%;
+
+	}
+
+	.button{
+
+		padding:8px;
+
+		margin:8px 0 0px 0;
+
+		width:100%;
+
+	}
+
+	div.question_text{
+
+		float:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		color:#ffffff;
+
+		min-width:30px;
+
+		background:#5489eb;
+
+		border-radius: 15px;
+
+		padding:10px 15px 14px 15px;
+
+		margin-right:45px;
+
+	}
+
+
+
+	div.question_text a:link, div.question_text a:hover, div.question_text a:active, div.question_text a:visited{ color:#e3fbfc; }
+
+
+
+	div.question_arrow{
+
+		float:left;
+
+		width: 0;
+
+		height: 0;
+
+		border-left: 5px solid transparent;
+
+		border-right: 10px solid transparent;
+
+		border-top: 15px solid #5489eb;
+
+		margin:0 20px;
+
+	}
+
+	div.ans_text{
+
+		float:right;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		color:#000000;
+
+		min-width:30px;
+
+		background:#eeeeee;
+
+		border-radius: 15px;
+
+		padding:10px 15px 14px 15px;
+
+		margin-left:45px;
+
+	}
+
+	div.ans_arrow{
+
+		float:right;
+
+		width: 0;
+
+		height: 0;
+
+		border-left: 10px solid transparent;
+
+		border-right: 5px solid transparent;
+
+		border-top: 15px solid #eeeeee;
+
+		margin:0 20px;
+
+	}
+
+	div.choices{
+
+		float:left;
+
+		width:100%;
+
+		margin:15px 0 0 0;
+
+	}
+
+	div.standard_buttons{
+
+		float:left;
+
+		width:100%;
+
+		margin-top:5px;
+
+		border-top: 1px solid #ddd;
+
+		padding-top:12px;
+
+	}
+
+	div.credits{
+
+		float:left;
+
+		dispaly:none;
+
+		width:100%;
+
+		background:#eee;
+
+		margin:0px 0 15px 0;
+
+	}
+
+	div.credit_text{
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		padding:4px 15px 10px 15px;
+
+	}
+
+	li.error{
+
+		list-style-type: none;
+
+		background:#ffdddd;
+
+		margin: 10px 0 0 0;
+
+		padding: 5px;
+
+	}
+
+
+
+	.qpad {
+
+		float:left;
+
+		padding:0 15px;
+
+	}
+
+
+
+	a.sbutton {
+
+		float:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		width:48%;
+
+		background: #eee;
+
+		border-radius: 8px;
+
+		padding:10px 0px 12px 0;
+
+		margin: 0 0 3px 0;
+
+		border: solid 1px #888;
+
+		text-align:center;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a.sbutton:hover, a.sbutton:active {
+
+		float:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		width:48%;
+
+		background: #ddd;
+
+		border-radius: 8px;
+
+		padding:10px 0px 12px 0;
+
+		margin: 0 0 3px 0;
+
+		border: solid 1px #888;
+
+		text-align:center;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a.qabutton {
+
+		float:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		width:100%;
+
+		background: #eee;
+
+		border-radius: 8px;
+
+		padding:10px 0px 12px 0;
+
+		margin: 0 0 8px 0;
+
+		border: solid 1px #888;
+
+		text-align:left;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a.qabutton:hover, a.qabutton:active {
+
+		float:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		width:100%;
+
+		background: #ddd;
+
+		border-radius: 8px;
+
+		padding:10px 0px 12px 0;
+
+		margin: 0 0 8px 0;
+
+		border: solid 1px #888;
+
+		text-align:left;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+
+
+	div.xdiv {
+
+		float:left;
+
+		width:100%;
+
+		margin: 0 0 8px 0;
+
+		background: #eee;
+
+		border: solid 1px #888;
+
+		border-radius: 8px;
+
+	}
+
+
+
+	input.xinput {
+
+		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+
+		box-sizing: border-box;         /* Opera/IE 8+ */
+
+		float:left;
+
+		width:100%;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		background: #fff;
+
+		border-top-left-radius: 8px;
+
+		border-top-right-radius: 8px;
+
+		padding:10px 10px 12px 10px;
+
+		border: solid 0px #888;
+
+		border-bottom: solid 1px #888;
+
+		text-align:left;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a.xbutton {
+
+		float:left;
+
+		width:100%;
+
+		text-align:left;
+
+		font-family: Verdana, Geneva, sans-serif;
+
+		font-size: 14px;
+
+		line-height: 20px;
+
+		background: #eee;
+
+		border-radius: 8px;
+
+		padding:10px 0px 12px 0px;
+
+		color: #000000;
+
+		text-decoration: none;
+
+	}
+
+
+
+	a.xbutton:hover, a.xbutton:active {
+
+		border-top-left-radius: 0px;
+
+		border-top-right-radius: 0px;
+
+		background: #ddd;
+
+	}
+
+</style>
+<FORM name="FORM" id="FORM"><div id="conversation" style="margin:15px auto 0 auto;padding:0 15px;max-width:500px"><div id='QandA' class='QandA'><div style='padding:15px;background:#ddffdd;text-align:center;'>Loading QnA...</div></div><div id='Choices' class='choices'></div><div id="rawmarkup" style="display:none;">After%3A%0D%0A%3Cscript+src%3D%22https%3A%2F%2Fcolarusso.github.io%2Fdm%2Fjs%2Fsrd_5e_monsters.js%22+type%3D%22text%2Fjavascript%22%3E%3C%2Fscript%3E%0D%0A%3Cscript+src%3D%22https%3A%2F%2Fcolarusso.github.io%2Fdmjs%2Ffunctions.js%22+type%3D%22text%2Fjavascript%22%3E%3C%2Fscript%3E%0D%0A%3Cstyle%3E%0D%0A.dice+%7B%0D%0A%09font-size%3A80px%3B%0D%0A%09line-height%3A100px%3B%0D%0A%09font-weight%3A600%3B%0D%0A%7D%0D%0A%3C%2Fstyle%3E%0D%0A%0D%0AQ%28greetings%29%3A+Greetings+Dungeon+Master.+%3Ca+href%3D%22https%3A%2F%2Fmastodon.social%2F%40Colarusso%22+target%3D%22_blank%22%3E%40Colarusso%3C%2Fa%3E+built+this+tool+to+help+him+learn+D%26D.+FWIW%2C+%3Ca+href%3D%22%22+target%3D%22_blank%22%3Ethe+code%3C%2Fa%3E+is+on+GitHub+should+you+want+to+make+edits+and+craft+your+own.+GOTO%3Astart%0D%0A%0D%0AQ%28start%29%3A+What+do+you+want+to+do%3F%0D%0AA%3A+%F0%9F%A4%94+Ability+check+to+see+if+something+happens%0D%0AA%3A+%F0%9F%91%B9+Look+up+a+monster%0D%0A%09Q%28monster%29%3A+By+name+or+stats%3F%0D%0A%09A%3A+Name%0D%0A%09%09Q%28mname%29%3A+Provide+the+full+or+partial+name.%0D%0A%09%09X%5Bjavascript%3Aget_monster%28getvar%28%27mname%27%29%29%5D%3Atext%0D%0A%09%09%09Q%28mname2%29%3AHow+about+a+%3Ca+href%3D%27https%3A%2F%2Fwww.aidedd.org%2Fdnd%2Fmonstres.php%3Fvo%3D%3Cx%3Emonster%3C%2Fx%3E%27+target%3D%27_blank%27%3E%3Cx%3Emonster%3C%2Fx%3E%3C%2Fa%3E+%28random+draw+from+all+matches%29%3F%0D%0A%09%09%09A%3A+New+name+search%0D%0A%09%09%09%09Q%282.2.1.1.1%29%3AGOTO%3Amname%09%0D%0A%09%09%09A%3A+New+stats+search%0D%0A%09%09%09%09Q%282.2.1.1.2%29%3AGOTO%3Aalignment%09%0D%0A%09%09%09A%3A+Back+to+Main+Menu%0D%0A%09%09%09%09Q%282.2.1.1.3%29%3AGOTO%3Astart%0D%0A%09A%3A+Stats%0D%0A%09%09Q%28alignment%29%3A+Alignment+%28e.g.%2C+%3Ca+href%3D%27%27+target%3D%27_blank%27%3Elawful+neutral%3C%2Fa%3E%29%3F+NOTE%3A+you+can+just+write+%22lawful%22+or+%22evil%22+if+you+want+to+search+along+one+axis.+Leave+blank+to+match+all+alignments.%0D%0A%09%09X%3Atext%0D%0A%09%09%09Q%28hit%29%3A+Max+Hit+Points%3F%0D%0A%09%09%09X%3Anumber%0D%0A%09%09%09%09Q%28ac%29%3A+Max+Armor+Class%3F%0D%0A%09%09%09%09X%5Bjavascript%3Aget_monster%28%27%27%2Cgetvar%28%27alignment%27%29%2Cgetvar%28%27hit%27%29%2Cgetvar%28%27ac%27%29%29%5D%3Anumber%0D%0A%09%09%09%09%09Q%282.2.2.1.1.1%29%3AHow+about+a+%3Ca+href%3D%27https%3A%2F%2Fwww.aidedd.org%2Fdnd%2Fmonstres.php%3Fvo%3D%3Cx%3Emonster%3C%2Fx%3E%27+target%3D%27_blank%27%3E%3Cx%3Emonster%3C%2Fx%3E%3C%2Fa%3E+%28random+draw+from+all+matches%29%3F%0D%0A%09%09%09%09%09A%3A+New+name+search%0D%0A%09%09%09%09%09%09Q%282.2.2.1.1.1.1%29%3AGOTO%3Amname%09%0D%0A%09%09%09%09%09A%3A+New+stats+search%0D%0A%09%09%09%09%09%09Q%282.2.2.1.1.1.2%29%3AGOTO%3Aalignment%09%0D%0A%09%09%09%09%09A%3A+Back+to+Main+Menu%0D%0A%09%09%09%09%09%09Q%282.2.2.1.1.1.3%29%3AGOTO%3Astart%0D%0A%0D%0AA%3A+%E2%9A%94%EF%B8%8F+Run+a+battle%0D%0A%09Q%28initiative%29%3A+Have+each+character+roll+a+D20+to+determine+the+order+of+combat.+Have+them+add+their+initiative+modifier+to+their+rolls.+They+will+play+in+the+order+of+these+numbers%2C+with+the+highest+going+first.%0D%0A%09A%3A+Everyone+has+rolled%3B+we+have+an+order%0D%0A%09%09Q%28ready%29%3A+Have+the+first+character+get+ready...+GOTO%3Astart_fight%0D%0A%09A%5Bjavascript%3Agoto%28dice%2820%2C%27another_roll%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D20%0D%0AA%3A+%F0%9F%8E%B2+Roll+a+dice%0D%0A%09Q%28pick_dice%29%3A+Pick+one.%0D%0A%09A%5Bjavascript%3Agoto%28dice%284%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D4%0D%0A%09A%5Bjavascript%3Agoto%28dice%286%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D6%0D%0A%09A%5Bjavascript%3Agoto%28dice%288%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D8%0D%0A%09A%5Bjavascript%3Agoto%28dice%2810%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D10%0D%0A%09A%5Bjavascript%3Agoto%28dice%2812%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D12%0D%0A%09A%5Bjavascript%3Agoto%28dice%2820%2C%27rolled%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D20%0D%0A%09A%3A+Back+to+Main+Menu%0D%0A%09%09Q%282.4.7%29%3AGOTO%3Astart%0D%0AA%3A+%F0%9F%93%9A+Beginner+Resources%0D%0A%09Q%282.5%29%3A+Here+are+some+resources+I+found+helpful.%0D%0A%09A%3A+How+to+Play+D%26D+%28%7E4m+video%29%0D%0A%09A%3A+Simplified+Action+Flowchart+%28image%29%0D%0A%09A%3A+Saving+Throws%0D%0A%0D%0A%0D%0A%0D%0AQ%28rolled%29%3A+%3Cspan+class%3D%22dice%22%3E%3Cx%3Estart%3C%2Fx%3E%3C%2Fspan%3EGOTO%3Apick_dice%0D%0A%0D%0AQ%28another_roll%29%3A+%3Cspan+class%3D%22dice%22%3E%3Cx%3Estart%3C%2Fx%3E%3C%2Fspan%3E%3Cbr%3E%3Cbr%3EDo+you+have+an+order+of+battle%3F%0D%0AA%3A+Yes%0D%0A%09Q%284.1%29%3AGOTO%3Aready%0D%0AA%5Bjavascript%3Agoto%28dice%2820%2C%27another_roll%27%29%29%5D%3A+%F0%9F%8E%B2+No%3B+roll+virtual+D20+again%0D%0A%0D%0A%0D%0AQ%28start_fight%29%3A+What+does+the+character+want+to+do%3F%0D%0AA%3A+Attack%0D%0A%09Q%285.1%29%3AGOTO%3Aattack%0D%0AA%3A+Saving%0D%0A%09Q%285.2%29%3A+...%0D%0AA%3A+Other%0D%0A%09Q%285.3%29%3AGOTO%3Aother%0D%0A%0D%0A%0D%0AQ%28more_fight%29%3A+Does+the+character+have+any+remaining+actions%3F%0D%0AA%3A+Yes%0D%0A%09Q%286.1%29%3AGOTO%3Astart_fight%0D%0AA%3A+No%0D%0A%09Q%286.2%29%3AGOTO%3Afight_over%0D%0A%0D%0A%0D%0AQ%28next_fight%29%3A+What+does+the+%3Cb%3E%3Ci%3ENEXT%3C%2Fi%3E%3C%2Fb%3E+character+want+to+do%3F%0D%0AA%3A+Attack%0D%0A%09Q%287.1%29%3AGOTO%3Aattack%0D%0AA%3A+Saving%0D%0A%09Q%287.2%29%3A+...%0D%0AA%3A+Other%0D%0A%09Q%287.3%29%3AGOTO%3Aother%0D%0A%0D%0AQ%28fight_over%29%3A+Is+the+battle+over%3F%0D%0AA%3A+Yes%0D%0A%09Q%288.1%29%3AGOTO%3Astart%0D%0AA%3A+No%0D%0A%09Q%288.2%29%3AGOTO%3Anext_fight%0D%0A%0D%0A%0D%0AQ%28attack%29%3A+Weapon+or+spell%3F%0D%0AA%3A+Weapon%0D%0A%09Q%289.1%29%3AGOTO%3Aweapon%0D%0AA%3A+Spell%0D%0A%09Q%289.2%29%3AGOTO%3Aspell%0D%0A%0D%0A%0D%0AQ%28weapon%29%3A+Have+them+roll+D20.%0D%0AA%3A+They+rolled%0D%0A%09Q%2810.1%29%3AGOTO%3Ad20roll_after%0D%0AA%5Bjavascript%3Agoto%28dice%2820%2C%27d20attack%27%29%29%5D%3A+Roll+virtual+D20%0D%0A%0D%0A%0D%0AQ%28d20roll_after%29%3A+Do+they+have+an+advantage+or+disadvantage%3F%0D%0AA%3A+No%0D%0A%09Q%28compare_attack%29%3A+Add+any+%3Ci%3Eweapon+proficiency%3C%2Fi%3E+to+the+roll.%3Cbr%3E%3Cbr%3EIs+this+number+larger+than+their+target%27s+Armor+Class%3F%0D%0A%09A%3A+Yes%0D%0A%09%09Q%2811.1.1%29%3A%3Cimg+src%3D%27https%3A%2F%2Fmedia.tenor.com%2FRD9V1mRxJUkAAAAC%2Fthor-yes.gif%27%2F%3E%3Cbr%3E%3Cbr%3EIt%27s+a+hit%21%21%21%21%3Cbr%3E%3Cbr%3ETo+determine+the+damage+have+them+roll+the+appropriate+weapon+dice.%0D%0A%09%09A%3A+They+rolled%0D%0A%09%09%09Q%2811.1.1.1%29%3AGOTO%3Adamage%0D%0A%09%09A%5Bjavascript%3Agoto%28dice%284%2C%27damageD%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D4%0D%0A%09%09A%5Bjavascript%3Agoto%28dice%286%2C%27damageD%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D6%0D%0A%09%09A%5Bjavascript%3Agoto%28dice%288%2C%27damageD%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D8%0D%0A%09%09A%5Bjavascript%3Agoto%28dice%2810%2C%27damageD%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D10%0D%0A%09%09A%5Bjavascript%3Agoto%28dice%2812%2C%27damageD%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D12%0D%0A%0D%0A%09A%3A+No%0D%0A%09%09Q%2811.1.2%29%3AThey+miss.GOTO%3Amore_fight%0D%0AA%3A+Advantage%0D%0A%09Q%2811.2%29%3A+Have+them+roll+a+second+time%2C+and+use+the+%3Ci%3Ehigher%3C%2Fi%3E+of+the+two+numbers+as+their+roll.%0D%0A%09A%3A+They+made+their+second+roll%0D%0A%09%09Q%2811.2.1%29%3AGOTO%3Acompare_attack%0D%0A%09A%5Bjavascript%3Agoto%28dice%2820%2C%27d20attack2%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D20%0D%0AA%3A+Disadvantage%0D%0A%09Q%2811.3%29%3A+Have+them+roll+a+second+time%2C+and+use+the+%3Ci%3Elower%3C%2Fi%3E+of+the+two+numbers+as+their+roll.%0D%0A%09A%3A+They+made+their+second+roll%0D%0A%09%09Q%2811.3.1%29%3AGOTO%3Acompare_attack%0D%0A%09A%5Bjavascript%3Agoto%28dice%2820%2C%27d20attack2%27%29%29%5D%3A+%F0%9F%8E%B2+Roll+virtual+D20%0D%0A%0D%0AQ%28damageD%29%3A+%3Cspan+class%3D%22dice%22%3E%3Cx%3Estart%3C%2Fx%3E%3C%2Fspan%3EGOTO%3Adamage%0D%0AQ%28damage%29%3A+Add+the+appropriate+modifier+%28e.g.%2C+strength+for+melee+OR+dexterity+for+range+or+fitness%29.+Subtract+this+value+from+the+target%27s+%3Ci%3Ehit+score%3C%2Fi%3E.+GOTO%3Amore_fight%0D%0A%0D%0AQ%28spell%29%3A%0D%0A%0D%0AQ%28other%29%3A+What+do+they+want+to+do%3F%0D%0AA%3A+Cast+a+spell%0D%0AA%3A+Dash%0D%0AA%3A+Dodge%0D%0AA%3A+Disengage%0D%0AA%3A+Escape%0D%0AA%3A+Help%0D%0AA%3A+Ready%0D%0AA%3A+When+I+said+%27other%2C%27+I+meant+OTHER%0D%0A%0D%0AQ%28d20attack%29%3A+%3Cspan+class%3D%22dice%22%3E%3Cx%3Estart%3C%2Fx%3E%3C%2Fspan%3EGOTO%3Ad20roll_after%0D%0AQ%28d20attack2%29%3A+%3Cspan+class%3D%22dice%22%3E%3Cx%3Estart%3C%2Fx%3E%3C%2Fspan%3EGOTO%3Acompare_attack%0D%0A</div><div id="ondeck" name="ondeck"><div id='Q-1' name='Q-1' style='display:none;'> Greetings Dungeon Master. <a href="https://mastodon.social/@Colarusso" target="_blank">@Colarusso</a> built this tool to help him learn D&D. FWIW, <a href="" target="_blank">the code</a> is on GitHub should you want to make edits and craft your own. GOTO:2</div><div id='Q-2' name='Q-2' style='display:none;'> What do you want to do?
+</div><div id='Q-2.2' name='Q-2.2' style='display:none;'> By name or stats?
+</div><div id='Q-2.2.1' name='Q-2.2.1' style='display:none;'> Provide the full or partial name.
+</div><div id='Q-2.2.1.1' name='Q-2.2.1.1' style='display:none;'>How about a <a href='https://www.aidedd.org/dnd/monstres.php?vo=<x>monster</x>' target='_blank'><x>monster</x></a> (random draw from all matches)?
+</div><div id='Q-2.2.1.1.1' name='Q-2.2.1.1.1' style='display:none;'>GOTO:2.2.1</div><div id='Q-2.2.1.1.2' name='Q-2.2.1.1.2' style='display:none;'>GOTO:2.2.2</div><div id='Q-2.2.1.1.3' name='Q-2.2.1.1.3' style='display:none;'>GOTO:2</div><div id='Q-2.2.2' name='Q-2.2.2' style='display:none;'> Alignment (e.g., <a href='' target='_blank'>lawful neutral</a>)? NOTE: you can just write "lawful" or "evil" if you want to search along one axis. Leave blank to match all alignments.
+</div><div id='Q-2.2.2.1' name='Q-2.2.2.1' style='display:none;'> Max Hit Points?
+</div><div id='Q-2.2.2.1.1' name='Q-2.2.2.1.1' style='display:none;'> Max Armor Class?
+</div><div id='Q-2.2.2.1.1.1' name='Q-2.2.2.1.1.1' style='display:none;'>How about a <a href='https://www.aidedd.org/dnd/monstres.php?vo=<x>monster</x>' target='_blank'><x>monster</x></a> (random draw from all matches)?
+</div><div id='Q-2.2.2.1.1.1.1' name='Q-2.2.2.1.1.1.1' style='display:none;'>GOTO:2.2.1</div><div id='Q-2.2.2.1.1.1.2' name='Q-2.2.2.1.1.1.2' style='display:none;'>GOTO:2.2.2</div><div id='Q-2.2.2.1.1.1.3' name='Q-2.2.2.1.1.1.3' style='display:none;'>GOTO:2</div><div id='Q-2.3' name='Q-2.3' style='display:none;'> Have each character roll a D20 to determine the order of combat. Have them add their initiative modifier to their rolls. They will play in the order of these numbers, with the highest going first.
+</div><div id='Q-2.3.1' name='Q-2.3.1' style='display:none;'> Have the first character get ready... GOTO:5</div><div id='Q-2.4' name='Q-2.4' style='display:none;'> Pick one.
+</div><div id='Q-2.4.7' name='Q-2.4.7' style='display:none;'>GOTO:2</div><div id='Q-2.5' name='Q-2.5' style='display:none;'> Here are some resources I found helpful.
+</div><div id='Q-3' name='Q-3' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:2.4</div><div id='Q-4' name='Q-4' style='display:none;'> <span class="dice"><x>start</x></span><br><br>Do you have an order of battle?
+</div><div id='Q-4.1' name='Q-4.1' style='display:none;'>GOTO:2.3.1</div><div id='Q-5' name='Q-5' style='display:none;'> What does the character want to do?
+</div><div id='Q-5.1' name='Q-5.1' style='display:none;'>GOTO:9</div><div id='Q-5.2' name='Q-5.2' style='display:none;'> ...
+</div><div id='Q-5.3' name='Q-5.3' style='display:none;'>GOTO:15</div><div id='Q-6' name='Q-6' style='display:none;'> Does the character have any remaining actions?
+</div><div id='Q-6.1' name='Q-6.1' style='display:none;'>GOTO:5</div><div id='Q-6.2' name='Q-6.2' style='display:none;'>GOTO:8</div><div id='Q-7' name='Q-7' style='display:none;'> What does the <b><i>NEXT</i></b> character want to do?
+</div><div id='Q-7.1' name='Q-7.1' style='display:none;'>GOTO:9</div><div id='Q-7.2' name='Q-7.2' style='display:none;'> ...
+</div><div id='Q-7.3' name='Q-7.3' style='display:none;'>GOTO:15</div><div id='Q-8' name='Q-8' style='display:none;'> Is the battle over?
+</div><div id='Q-8.1' name='Q-8.1' style='display:none;'>GOTO:2</div><div id='Q-8.2' name='Q-8.2' style='display:none;'>GOTO:7</div><div id='Q-9' name='Q-9' style='display:none;'> Weapon or spell?
+</div><div id='Q-9.1' name='Q-9.1' style='display:none;'>GOTO:10</div><div id='Q-9.2' name='Q-9.2' style='display:none;'>GOTO:14</div><div id='Q-10' name='Q-10' style='display:none;'> Have them roll D20.
+</div><div id='Q-10.1' name='Q-10.1' style='display:none;'>GOTO:11</div><div id='Q-11' name='Q-11' style='display:none;'> Do they have an advantage or disadvantage?
+</div><div id='Q-11.1' name='Q-11.1' style='display:none;'> Add any <i>weapon proficiency</i> to the roll.<br><br>Is this number larger than their target's Armor Class?
+</div><div id='Q-11.1.1' name='Q-11.1.1' style='display:none;'><img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!!<br><br>To determine the damage have them roll the appropriate weapon dice.
+</div><div id='Q-11.1.1.1' name='Q-11.1.1.1' style='display:none;'>GOTO:13</div><div id='Q-11.1.2' name='Q-11.1.2' style='display:none;'>They miss.GOTO:6</div><div id='Q-11.2' name='Q-11.2' style='display:none;'> Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+</div><div id='Q-11.2.1' name='Q-11.2.1' style='display:none;'>GOTO:11.1</div><div id='Q-11.3' name='Q-11.3' style='display:none;'> Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+</div><div id='Q-11.3.1' name='Q-11.3.1' style='display:none;'>GOTO:11.1</div><div id='Q-12' name='Q-12' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:13</div><div id='Q-13' name='Q-13' style='display:none;'> Add the appropriate modifier (e.g., strength for melee OR dexterity for range or fitness). Subtract this value from the target's <i>hit score</i>. GOTO:6</div><div id='Q-14' name='Q-14' style='display:none;'>
+
+</div><div id='Q-15' name='Q-15' style='display:none;'> What do they want to do?
+</div><div id='Q-16' name='Q-16' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:11</div><div id='Q-17' name='Q-17' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:11.1</div><div id='A-2.1' name='A-2.1' style='display:none;'> 🤔 Ability check to see if something happens
+</div><div id='A-href-2.1' name='A-href-2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.1' name='A-target-2.1' style='display:none;'></div><div id='X-2.1' name='X-2.1' style='display:none;'>🤔 Ability check to see if something happens</div><div id='A-2.2' name='A-2.2' style='display:none;'> 👹 Look up a monster
+</div><div id='A-href-2.2' name='A-href-2.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2' name='A-target-2.2' style='display:none;'></div><div id='X-2.2' name='X-2.2' style='display:none;'>👹 Look up a monster</div><div id='A-2.2.1' name='A-2.2.1' style='display:none;'> Name
+</div><div id='A-href-2.2.1' name='A-href-2.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1' name='A-target-2.2.1' style='display:none;'></div><div id='X-2.2.1' name='X-2.2.1' style='display:none;'>Name</div><div id='A-2.2.1.1' name='A-2.2.1.1' style='display:none;'><variable></div><div id='A-href-2.2.1.1' name='A-href-2.2.1.1' style='display:none;'>javascript:get_monster(getvar('mname'))</div><div id='A-target-2.2.1.1' name='A-target-2.2.1.1' style='display:none;'>text</div><div id='X-2.2.1.1' name='X-2.2.1.1' style='display:none;'>2.2.1.1</div><div id='A-2.2.1.1.1' name='A-2.2.1.1.1' style='display:none;'> New name search
+</div><div id='A-href-2.2.1.1.1' name='A-href-2.2.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.1' name='A-target-2.2.1.1.1' style='display:none;'></div><div id='X-2.2.1.1.1' name='X-2.2.1.1.1' style='display:none;'>New name search</div><div id='A-2.2.1.1.2' name='A-2.2.1.1.2' style='display:none;'> New stats search
+</div><div id='A-href-2.2.1.1.2' name='A-href-2.2.1.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.2' name='A-target-2.2.1.1.2' style='display:none;'></div><div id='X-2.2.1.1.2' name='X-2.2.1.1.2' style='display:none;'>New stats search</div><div id='A-2.2.1.1.3' name='A-2.2.1.1.3' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.2.1.1.3' name='A-href-2.2.1.1.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.3' name='A-target-2.2.1.1.3' style='display:none;'></div><div id='X-2.2.1.1.3' name='X-2.2.1.1.3' style='display:none;'>Back to Main Menu</div><div id='A-2.2.2' name='A-2.2.2' style='display:none;'> Stats
+</div><div id='A-href-2.2.2' name='A-href-2.2.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2' name='A-target-2.2.2' style='display:none;'></div><div id='X-2.2.2' name='X-2.2.2' style='display:none;'>Stats</div><div id='A-2.2.2.1' name='A-2.2.2.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1' name='A-href-2.2.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1' name='A-target-2.2.2.1' style='display:none;'>text</div><div id='X-2.2.2.1' name='X-2.2.2.1' style='display:none;'>2.2.2.1</div><div id='A-2.2.2.1.1' name='A-2.2.2.1.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1.1' name='A-href-2.2.2.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1' name='A-target-2.2.2.1.1' style='display:none;'>number</div><div id='X-2.2.2.1.1' name='X-2.2.2.1.1' style='display:none;'>2.2.2.1.1</div><div id='A-2.2.2.1.1.1' name='A-2.2.2.1.1.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1.1.1' name='A-href-2.2.2.1.1.1' style='display:none;'>javascript:get_monster('',getvar('alignment'),getvar('hit'),getvar('ac'))</div><div id='A-target-2.2.2.1.1.1' name='A-target-2.2.2.1.1.1' style='display:none;'>number</div><div id='X-2.2.2.1.1.1' name='X-2.2.2.1.1.1' style='display:none;'>2.2.2.1.1.1</div><div id='A-2.2.2.1.1.1.1' name='A-2.2.2.1.1.1.1' style='display:none;'> New name search
+</div><div id='A-href-2.2.2.1.1.1.1' name='A-href-2.2.2.1.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.1' name='A-target-2.2.2.1.1.1.1' style='display:none;'></div><div id='X-2.2.2.1.1.1.1' name='X-2.2.2.1.1.1.1' style='display:none;'>New name search</div><div id='A-2.2.2.1.1.1.2' name='A-2.2.2.1.1.1.2' style='display:none;'> New stats search
+</div><div id='A-href-2.2.2.1.1.1.2' name='A-href-2.2.2.1.1.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.2' name='A-target-2.2.2.1.1.1.2' style='display:none;'></div><div id='X-2.2.2.1.1.1.2' name='X-2.2.2.1.1.1.2' style='display:none;'>New stats search</div><div id='A-2.2.2.1.1.1.3' name='A-2.2.2.1.1.1.3' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.2.2.1.1.1.3' name='A-href-2.2.2.1.1.1.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.3' name='A-target-2.2.2.1.1.1.3' style='display:none;'></div><div id='X-2.2.2.1.1.1.3' name='X-2.2.2.1.1.1.3' style='display:none;'>Back to Main Menu</div><div id='A-2.3' name='A-2.3' style='display:none;'> ⚔️ Run a battle
+</div><div id='A-href-2.3' name='A-href-2.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.3' name='A-target-2.3' style='display:none;'></div><div id='X-2.3' name='X-2.3' style='display:none;'>⚔️ Run a battle</div><div id='A-2.3.1' name='A-2.3.1' style='display:none;'> Everyone has rolled; we have an order
+</div><div id='A-href-2.3.1' name='A-href-2.3.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.3.1' name='A-target-2.3.1' style='display:none;'></div><div id='X-2.3.1' name='X-2.3.1' style='display:none;'>Everyone has rolled; we have an order</div><div id='A-2.3.2' name='A-2.3.2' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-2.3.2' name='A-href-2.3.2' style='display:none;'>javascript:goto(dice(20,'another_roll'))</div><div id='A-target-2.3.2' name='A-target-2.3.2' style='display:none;'></div><div id='X-2.3.2' name='X-2.3.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-2.4' name='A-2.4' style='display:none;'> 🎲 Roll a dice
+</div><div id='A-href-2.4' name='A-href-2.4' style='display:none;'>javascript:void('');</div><div id='A-target-2.4' name='A-target-2.4' style='display:none;'></div><div id='X-2.4' name='X-2.4' style='display:none;'>🎲 Roll a dice</div><div id='A-2.4.1' name='A-2.4.1' style='display:none;'> 🎲 Roll virtual D4
+</div><div id='A-href-2.4.1' name='A-href-2.4.1' style='display:none;'>javascript:goto(dice(4,'rolled'))</div><div id='A-target-2.4.1' name='A-target-2.4.1' style='display:none;'></div><div id='X-2.4.1' name='X-2.4.1' style='display:none;'>🎲 Roll virtual D4</div><div id='A-2.4.2' name='A-2.4.2' style='display:none;'> 🎲 Roll virtual D6
+</div><div id='A-href-2.4.2' name='A-href-2.4.2' style='display:none;'>javascript:goto(dice(6,'rolled'))</div><div id='A-target-2.4.2' name='A-target-2.4.2' style='display:none;'></div><div id='X-2.4.2' name='X-2.4.2' style='display:none;'>🎲 Roll virtual D6</div><div id='A-2.4.3' name='A-2.4.3' style='display:none;'> 🎲 Roll virtual D8
+</div><div id='A-href-2.4.3' name='A-href-2.4.3' style='display:none;'>javascript:goto(dice(8,'rolled'))</div><div id='A-target-2.4.3' name='A-target-2.4.3' style='display:none;'></div><div id='X-2.4.3' name='X-2.4.3' style='display:none;'>🎲 Roll virtual D8</div><div id='A-2.4.4' name='A-2.4.4' style='display:none;'> 🎲 Roll virtual D10
+</div><div id='A-href-2.4.4' name='A-href-2.4.4' style='display:none;'>javascript:goto(dice(10,'rolled'))</div><div id='A-target-2.4.4' name='A-target-2.4.4' style='display:none;'></div><div id='X-2.4.4' name='X-2.4.4' style='display:none;'>🎲 Roll virtual D10</div><div id='A-2.4.5' name='A-2.4.5' style='display:none;'> 🎲 Roll virtual D12
+</div><div id='A-href-2.4.5' name='A-href-2.4.5' style='display:none;'>javascript:goto(dice(12,'rolled'))</div><div id='A-target-2.4.5' name='A-target-2.4.5' style='display:none;'></div><div id='X-2.4.5' name='X-2.4.5' style='display:none;'>🎲 Roll virtual D12</div><div id='A-2.4.6' name='A-2.4.6' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-2.4.6' name='A-href-2.4.6' style='display:none;'>javascript:goto(dice(20,'rolled'))</div><div id='A-target-2.4.6' name='A-target-2.4.6' style='display:none;'></div><div id='X-2.4.6' name='X-2.4.6' style='display:none;'>🎲 Roll virtual D20</div><div id='A-2.4.7' name='A-2.4.7' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.4.7' name='A-href-2.4.7' style='display:none;'>javascript:void('');</div><div id='A-target-2.4.7' name='A-target-2.4.7' style='display:none;'></div><div id='X-2.4.7' name='X-2.4.7' style='display:none;'>Back to Main Menu</div><div id='A-2.5' name='A-2.5' style='display:none;'> 📚 Beginner Resources
+</div><div id='A-href-2.5' name='A-href-2.5' style='display:none;'>javascript:void('');</div><div id='A-target-2.5' name='A-target-2.5' style='display:none;'></div><div id='X-2.5' name='X-2.5' style='display:none;'>📚 Beginner Resources</div><div id='A-2.5.1' name='A-2.5.1' style='display:none;'> How to Play D&D (~4m video)
+</div><div id='A-href-2.5.1' name='A-href-2.5.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.1' name='A-target-2.5.1' style='display:none;'></div><div id='X-2.5.1' name='X-2.5.1' style='display:none;'>How to Play D&D (~4m video)</div><div id='A-2.5.2' name='A-2.5.2' style='display:none;'> Simplified Action Flowchart (image)
+</div><div id='A-href-2.5.2' name='A-href-2.5.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.2' name='A-target-2.5.2' style='display:none;'></div><div id='X-2.5.2' name='X-2.5.2' style='display:none;'>Simplified Action Flowchart (image)</div><div id='A-2.5.3' name='A-2.5.3' style='display:none;'> Saving Throws
+
+
+
+</div><div id='A-href-2.5.3' name='A-href-2.5.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.3' name='A-target-2.5.3' style='display:none;'></div><div id='X-2.5.3' name='X-2.5.3' style='display:none;'>Saving Throws</div><div id='A-4.1' name='A-4.1' style='display:none;'> Yes
+</div><div id='A-href-4.1' name='A-href-4.1' style='display:none;'>javascript:void('');</div><div id='A-target-4.1' name='A-target-4.1' style='display:none;'></div><div id='X-4.1' name='X-4.1' style='display:none;'>Yes</div><div id='A-4.2' name='A-4.2' style='display:none;'> 🎲 No; roll virtual D20 again
+
+
+</div><div id='A-href-4.2' name='A-href-4.2' style='display:none;'>javascript:goto(dice(20,'another_roll'))</div><div id='A-target-4.2' name='A-target-4.2' style='display:none;'></div><div id='X-4.2' name='X-4.2' style='display:none;'>🎲 No; roll virtual D20 again</div><div id='A-5.1' name='A-5.1' style='display:none;'> Attack
+</div><div id='A-href-5.1' name='A-href-5.1' style='display:none;'>javascript:void('');</div><div id='A-target-5.1' name='A-target-5.1' style='display:none;'></div><div id='X-5.1' name='X-5.1' style='display:none;'>Attack</div><div id='A-5.2' name='A-5.2' style='display:none;'> Saving
+</div><div id='A-href-5.2' name='A-href-5.2' style='display:none;'>javascript:void('');</div><div id='A-target-5.2' name='A-target-5.2' style='display:none;'></div><div id='X-5.2' name='X-5.2' style='display:none;'>Saving</div><div id='A-5.3' name='A-5.3' style='display:none;'> Other
+</div><div id='A-href-5.3' name='A-href-5.3' style='display:none;'>javascript:void('');</div><div id='A-target-5.3' name='A-target-5.3' style='display:none;'></div><div id='X-5.3' name='X-5.3' style='display:none;'>Other</div><div id='A-6.1' name='A-6.1' style='display:none;'> Yes
+</div><div id='A-href-6.1' name='A-href-6.1' style='display:none;'>javascript:void('');</div><div id='A-target-6.1' name='A-target-6.1' style='display:none;'></div><div id='X-6.1' name='X-6.1' style='display:none;'>Yes</div><div id='A-6.2' name='A-6.2' style='display:none;'> No
+</div><div id='A-href-6.2' name='A-href-6.2' style='display:none;'>javascript:void('');</div><div id='A-target-6.2' name='A-target-6.2' style='display:none;'></div><div id='X-6.2' name='X-6.2' style='display:none;'>No</div><div id='A-7.1' name='A-7.1' style='display:none;'> Attack
+</div><div id='A-href-7.1' name='A-href-7.1' style='display:none;'>javascript:void('');</div><div id='A-target-7.1' name='A-target-7.1' style='display:none;'></div><div id='X-7.1' name='X-7.1' style='display:none;'>Attack</div><div id='A-7.2' name='A-7.2' style='display:none;'> Saving
+</div><div id='A-href-7.2' name='A-href-7.2' style='display:none;'>javascript:void('');</div><div id='A-target-7.2' name='A-target-7.2' style='display:none;'></div><div id='X-7.2' name='X-7.2' style='display:none;'>Saving</div><div id='A-7.3' name='A-7.3' style='display:none;'> Other
+</div><div id='A-href-7.3' name='A-href-7.3' style='display:none;'>javascript:void('');</div><div id='A-target-7.3' name='A-target-7.3' style='display:none;'></div><div id='X-7.3' name='X-7.3' style='display:none;'>Other</div><div id='A-8.1' name='A-8.1' style='display:none;'> Yes
+</div><div id='A-href-8.1' name='A-href-8.1' style='display:none;'>javascript:void('');</div><div id='A-target-8.1' name='A-target-8.1' style='display:none;'></div><div id='X-8.1' name='X-8.1' style='display:none;'>Yes</div><div id='A-8.2' name='A-8.2' style='display:none;'> No
+</div><div id='A-href-8.2' name='A-href-8.2' style='display:none;'>javascript:void('');</div><div id='A-target-8.2' name='A-target-8.2' style='display:none;'></div><div id='X-8.2' name='X-8.2' style='display:none;'>No</div><div id='A-9.1' name='A-9.1' style='display:none;'> Weapon
+</div><div id='A-href-9.1' name='A-href-9.1' style='display:none;'>javascript:void('');</div><div id='A-target-9.1' name='A-target-9.1' style='display:none;'></div><div id='X-9.1' name='X-9.1' style='display:none;'>Weapon</div><div id='A-9.2' name='A-9.2' style='display:none;'> Spell
+</div><div id='A-href-9.2' name='A-href-9.2' style='display:none;'>javascript:void('');</div><div id='A-target-9.2' name='A-target-9.2' style='display:none;'></div><div id='X-9.2' name='X-9.2' style='display:none;'>Spell</div><div id='A-10.1' name='A-10.1' style='display:none;'> They rolled
+</div><div id='A-href-10.1' name='A-href-10.1' style='display:none;'>javascript:void('');</div><div id='A-target-10.1' name='A-target-10.1' style='display:none;'></div><div id='X-10.1' name='X-10.1' style='display:none;'>They rolled</div><div id='A-10.2' name='A-10.2' style='display:none;'> Roll virtual D20
+
+
+</div><div id='A-href-10.2' name='A-href-10.2' style='display:none;'>javascript:goto(dice(20,'d20attack'))</div><div id='A-target-10.2' name='A-target-10.2' style='display:none;'></div><div id='X-10.2' name='X-10.2' style='display:none;'>Roll virtual D20</div><div id='A-11.1' name='A-11.1' style='display:none;'> No
+</div><div id='A-href-11.1' name='A-href-11.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1' name='A-target-11.1' style='display:none;'></div><div id='X-11.1' name='X-11.1' style='display:none;'>No</div><div id='A-11.1.1' name='A-11.1.1' style='display:none;'> Yes
+</div><div id='A-href-11.1.1' name='A-href-11.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.1' name='A-target-11.1.1' style='display:none;'></div><div id='X-11.1.1' name='X-11.1.1' style='display:none;'>Yes</div><div id='A-11.1.1.1' name='A-11.1.1.1' style='display:none;'> They rolled
+</div><div id='A-href-11.1.1.1' name='A-href-11.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.1.1' name='A-target-11.1.1.1' style='display:none;'></div><div id='X-11.1.1.1' name='X-11.1.1.1' style='display:none;'>They rolled</div><div id='A-11.1.1.2' name='A-11.1.1.2' style='display:none;'> 🎲 Roll virtual D4
+</div><div id='A-href-11.1.1.2' name='A-href-11.1.1.2' style='display:none;'>javascript:goto(dice(4,'damageD'))</div><div id='A-target-11.1.1.2' name='A-target-11.1.1.2' style='display:none;'></div><div id='X-11.1.1.2' name='X-11.1.1.2' style='display:none;'>🎲 Roll virtual D4</div><div id='A-11.1.1.3' name='A-11.1.1.3' style='display:none;'> 🎲 Roll virtual D6
+</div><div id='A-href-11.1.1.3' name='A-href-11.1.1.3' style='display:none;'>javascript:goto(dice(6,'damageD'))</div><div id='A-target-11.1.1.3' name='A-target-11.1.1.3' style='display:none;'></div><div id='X-11.1.1.3' name='X-11.1.1.3' style='display:none;'>🎲 Roll virtual D6</div><div id='A-11.1.1.4' name='A-11.1.1.4' style='display:none;'> 🎲 Roll virtual D8
+</div><div id='A-href-11.1.1.4' name='A-href-11.1.1.4' style='display:none;'>javascript:goto(dice(8,'damageD'))</div><div id='A-target-11.1.1.4' name='A-target-11.1.1.4' style='display:none;'></div><div id='X-11.1.1.4' name='X-11.1.1.4' style='display:none;'>🎲 Roll virtual D8</div><div id='A-11.1.1.5' name='A-11.1.1.5' style='display:none;'> 🎲 Roll virtual D10
+</div><div id='A-href-11.1.1.5' name='A-href-11.1.1.5' style='display:none;'>javascript:goto(dice(10,'damageD'))</div><div id='A-target-11.1.1.5' name='A-target-11.1.1.5' style='display:none;'></div><div id='X-11.1.1.5' name='X-11.1.1.5' style='display:none;'>🎲 Roll virtual D10</div><div id='A-11.1.1.6' name='A-11.1.1.6' style='display:none;'> 🎲 Roll virtual D12
+
+</div><div id='A-href-11.1.1.6' name='A-href-11.1.1.6' style='display:none;'>javascript:goto(dice(12,'damageD'))</div><div id='A-target-11.1.1.6' name='A-target-11.1.1.6' style='display:none;'></div><div id='X-11.1.1.6' name='X-11.1.1.6' style='display:none;'>🎲 Roll virtual D12</div><div id='A-11.1.2' name='A-11.1.2' style='display:none;'> No
+</div><div id='A-href-11.1.2' name='A-href-11.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.2' name='A-target-11.1.2' style='display:none;'></div><div id='X-11.1.2' name='X-11.1.2' style='display:none;'>No</div><div id='A-11.2' name='A-11.2' style='display:none;'> Advantage
+</div><div id='A-href-11.2' name='A-href-11.2' style='display:none;'>javascript:void('');</div><div id='A-target-11.2' name='A-target-11.2' style='display:none;'></div><div id='X-11.2' name='X-11.2' style='display:none;'>Advantage</div><div id='A-11.2.1' name='A-11.2.1' style='display:none;'> They made their second roll
+</div><div id='A-href-11.2.1' name='A-href-11.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.2.1' name='A-target-11.2.1' style='display:none;'></div><div id='X-11.2.1' name='X-11.2.1' style='display:none;'>They made their second roll</div><div id='A-11.2.2' name='A-11.2.2' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-11.2.2' name='A-href-11.2.2' style='display:none;'>javascript:goto(dice(20,'d20attack2'))</div><div id='A-target-11.2.2' name='A-target-11.2.2' style='display:none;'></div><div id='X-11.2.2' name='X-11.2.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-11.3' name='A-11.3' style='display:none;'> Disadvantage
+</div><div id='A-href-11.3' name='A-href-11.3' style='display:none;'>javascript:void('');</div><div id='A-target-11.3' name='A-target-11.3' style='display:none;'></div><div id='X-11.3' name='X-11.3' style='display:none;'>Disadvantage</div><div id='A-11.3.1' name='A-11.3.1' style='display:none;'> They made their second roll
+</div><div id='A-href-11.3.1' name='A-href-11.3.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.3.1' name='A-target-11.3.1' style='display:none;'></div><div id='X-11.3.1' name='X-11.3.1' style='display:none;'>They made their second roll</div><div id='A-11.3.2' name='A-11.3.2' style='display:none;'> 🎲 Roll virtual D20
+
+</div><div id='A-href-11.3.2' name='A-href-11.3.2' style='display:none;'>javascript:goto(dice(20,'d20attack2'))</div><div id='A-target-11.3.2' name='A-target-11.3.2' style='display:none;'></div><div id='X-11.3.2' name='X-11.3.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-15.1' name='A-15.1' style='display:none;'> Cast a spell
+</div><div id='A-href-15.1' name='A-href-15.1' style='display:none;'>javascript:void('');</div><div id='A-target-15.1' name='A-target-15.1' style='display:none;'></div><div id='X-15.1' name='X-15.1' style='display:none;'>Cast a spell</div><div id='A-15.2' name='A-15.2' style='display:none;'> Dash
+</div><div id='A-href-15.2' name='A-href-15.2' style='display:none;'>javascript:void('');</div><div id='A-target-15.2' name='A-target-15.2' style='display:none;'></div><div id='X-15.2' name='X-15.2' style='display:none;'>Dash</div><div id='A-15.3' name='A-15.3' style='display:none;'> Dodge
+</div><div id='A-href-15.3' name='A-href-15.3' style='display:none;'>javascript:void('');</div><div id='A-target-15.3' name='A-target-15.3' style='display:none;'></div><div id='X-15.3' name='X-15.3' style='display:none;'>Dodge</div><div id='A-15.4' name='A-15.4' style='display:none;'> Disengage
+</div><div id='A-href-15.4' name='A-href-15.4' style='display:none;'>javascript:void('');</div><div id='A-target-15.4' name='A-target-15.4' style='display:none;'></div><div id='X-15.4' name='X-15.4' style='display:none;'>Disengage</div><div id='A-15.5' name='A-15.5' style='display:none;'> Escape
+</div><div id='A-href-15.5' name='A-href-15.5' style='display:none;'>javascript:void('');</div><div id='A-target-15.5' name='A-target-15.5' style='display:none;'></div><div id='X-15.5' name='X-15.5' style='display:none;'>Escape</div><div id='A-15.6' name='A-15.6' style='display:none;'> Help
+</div><div id='A-href-15.6' name='A-href-15.6' style='display:none;'>javascript:void('');</div><div id='A-target-15.6' name='A-target-15.6' style='display:none;'></div><div id='X-15.6' name='X-15.6' style='display:none;'>Help</div><div id='A-15.7' name='A-15.7' style='display:none;'> Ready
+</div><div id='A-href-15.7' name='A-href-15.7' style='display:none;'>javascript:void('');</div><div id='A-target-15.7' name='A-target-15.7' style='display:none;'></div><div id='X-15.7' name='X-15.7' style='display:none;'>Ready</div><div id='A-15.8' name='A-15.8' style='display:none;'> When I said 'other,' I meant OTHER
+
+</div><div id='A-href-15.8' name='A-href-15.8' style='display:none;'>javascript:void('');</div><div id='A-target-15.8' name='A-target-15.8' style='display:none;'></div><div id='X-15.8' name='X-15.8' style='display:none;'>When I said 'other,' I meant OTHER</div>
+<script>
+	var QVnames = [['1','greetings'],['2','start'],['2.2','monster'],['2.2.1','mname'],['2.2.1.1','mname2'],['2.2.1.1.1','2.2.1.1.1'],['2.2.1.1.2','2.2.1.1.2'],['2.2.1.1.3','2.2.1.1.3'],['2.2.2','alignment'],['2.2.2.1','hit'],['2.2.2.1.1','ac'],['2.2.2.1.1.1','2.2.2.1.1.1'],['2.2.2.1.1.1.1','2.2.2.1.1.1.1'],['2.2.2.1.1.1.2','2.2.2.1.1.1.2'],['2.2.2.1.1.1.3','2.2.2.1.1.1.3'],['2.3','initiative'],['2.3.1','ready'],['2.4','pick_dice'],['2.4.7','2.4.7'],['2.5','2.5'],['3','rolled'],['4','another_roll'],['4.1','4.1'],['5','start_fight'],['5.1','5.1'],['5.2','5.2'],['5.3','5.3'],['6','more_fight'],['6.1','6.1'],['6.2','6.2'],['7','next_fight'],['7.1','7.1'],['7.2','7.2'],['7.3','7.3'],['8','fight_over'],['8.1','8.1'],['8.2','8.2'],['9','attack'],['9.1','9.1'],['9.2','9.2'],['10','weapon'],['10.1','10.1'],['11','d20roll_after'],['11.1','compare_attack'],['11.1.1','11.1.1'],['11.1.1.1','11.1.1.1'],['11.1.2','11.1.2'],['11.2','11.2'],['11.2.1','11.2.1'],['11.3','11.3'],['11.3.1','11.3.1'],['12','damageD'],['13','damage'],['14','spell'],['15','other'],['16','d20attack'],['17','d20attack2']];
+</script>
+</div><textarea id="original" name="original" style="display:none;" disabled="disabled"><div id='Q-1' name='Q-1' style='display:none;'> Greetings Dungeon Master. <a href="https://mastodon.social/@Colarusso" target="_blank">@Colarusso</a> built this tool to help him learn D&D. FWIW, <a href="" target="_blank">the code</a> is on GitHub should you want to make edits and craft your own. GOTO:2</div><div id='Q-2' name='Q-2' style='display:none;'> What do you want to do?
+</div><div id='Q-2.2' name='Q-2.2' style='display:none;'> By name or stats?
+</div><div id='Q-2.2.1' name='Q-2.2.1' style='display:none;'> Provide the full or partial name.
+</div><div id='Q-2.2.1.1' name='Q-2.2.1.1' style='display:none;'>How about a <a href='https://www.aidedd.org/dnd/monstres.php?vo=<x>monster</x>' target='_blank'><x>monster</x></a> (random draw from all matches)?
+</div><div id='Q-2.2.1.1.1' name='Q-2.2.1.1.1' style='display:none;'>GOTO:2.2.1</div><div id='Q-2.2.1.1.2' name='Q-2.2.1.1.2' style='display:none;'>GOTO:2.2.2</div><div id='Q-2.2.1.1.3' name='Q-2.2.1.1.3' style='display:none;'>GOTO:2</div><div id='Q-2.2.2' name='Q-2.2.2' style='display:none;'> Alignment (e.g., <a href='' target='_blank'>lawful neutral</a>)? NOTE: you can just write "lawful" or "evil" if you want to search along one axis. Leave blank to match all alignments.
+</div><div id='Q-2.2.2.1' name='Q-2.2.2.1' style='display:none;'> Max Hit Points?
+</div><div id='Q-2.2.2.1.1' name='Q-2.2.2.1.1' style='display:none;'> Max Armor Class?
+</div><div id='Q-2.2.2.1.1.1' name='Q-2.2.2.1.1.1' style='display:none;'>How about a <a href='https://www.aidedd.org/dnd/monstres.php?vo=<x>monster</x>' target='_blank'><x>monster</x></a> (random draw from all matches)?
+</div><div id='Q-2.2.2.1.1.1.1' name='Q-2.2.2.1.1.1.1' style='display:none;'>GOTO:2.2.1</div><div id='Q-2.2.2.1.1.1.2' name='Q-2.2.2.1.1.1.2' style='display:none;'>GOTO:2.2.2</div><div id='Q-2.2.2.1.1.1.3' name='Q-2.2.2.1.1.1.3' style='display:none;'>GOTO:2</div><div id='Q-2.3' name='Q-2.3' style='display:none;'> Have each character roll a D20 to determine the order of combat. Have them add their initiative modifier to their rolls. They will play in the order of these numbers, with the highest going first.
+</div><div id='Q-2.3.1' name='Q-2.3.1' style='display:none;'> Have the first character get ready... GOTO:5</div><div id='Q-2.4' name='Q-2.4' style='display:none;'> Pick one.
+</div><div id='Q-2.4.7' name='Q-2.4.7' style='display:none;'>GOTO:2</div><div id='Q-2.5' name='Q-2.5' style='display:none;'> Here are some resources I found helpful.
+</div><div id='Q-3' name='Q-3' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:2.4</div><div id='Q-4' name='Q-4' style='display:none;'> <span class="dice"><x>start</x></span><br><br>Do you have an order of battle?
+</div><div id='Q-4.1' name='Q-4.1' style='display:none;'>GOTO:2.3.1</div><div id='Q-5' name='Q-5' style='display:none;'> What does the character want to do?
+</div><div id='Q-5.1' name='Q-5.1' style='display:none;'>GOTO:9</div><div id='Q-5.2' name='Q-5.2' style='display:none;'> ...
+</div><div id='Q-5.3' name='Q-5.3' style='display:none;'>GOTO:15</div><div id='Q-6' name='Q-6' style='display:none;'> Does the character have any remaining actions?
+</div><div id='Q-6.1' name='Q-6.1' style='display:none;'>GOTO:5</div><div id='Q-6.2' name='Q-6.2' style='display:none;'>GOTO:8</div><div id='Q-7' name='Q-7' style='display:none;'> What does the <b><i>NEXT</i></b> character want to do?
+</div><div id='Q-7.1' name='Q-7.1' style='display:none;'>GOTO:9</div><div id='Q-7.2' name='Q-7.2' style='display:none;'> ...
+</div><div id='Q-7.3' name='Q-7.3' style='display:none;'>GOTO:15</div><div id='Q-8' name='Q-8' style='display:none;'> Is the battle over?
+</div><div id='Q-8.1' name='Q-8.1' style='display:none;'>GOTO:2</div><div id='Q-8.2' name='Q-8.2' style='display:none;'>GOTO:7</div><div id='Q-9' name='Q-9' style='display:none;'> Weapon or spell?
+</div><div id='Q-9.1' name='Q-9.1' style='display:none;'>GOTO:10</div><div id='Q-9.2' name='Q-9.2' style='display:none;'>GOTO:14</div><div id='Q-10' name='Q-10' style='display:none;'> Have them roll D20.
+</div><div id='Q-10.1' name='Q-10.1' style='display:none;'>GOTO:11</div><div id='Q-11' name='Q-11' style='display:none;'> Do they have an advantage or disadvantage?
+</div><div id='Q-11.1' name='Q-11.1' style='display:none;'> Add any <i>weapon proficiency</i> to the roll.<br><br>Is this number larger than their target's Armor Class?
+</div><div id='Q-11.1.1' name='Q-11.1.1' style='display:none;'><img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!!<br><br>To determine the damage have them roll the appropriate weapon dice.
+</div><div id='Q-11.1.1.1' name='Q-11.1.1.1' style='display:none;'>GOTO:13</div><div id='Q-11.1.2' name='Q-11.1.2' style='display:none;'>They miss.GOTO:6</div><div id='Q-11.2' name='Q-11.2' style='display:none;'> Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+</div><div id='Q-11.2.1' name='Q-11.2.1' style='display:none;'>GOTO:11.1</div><div id='Q-11.3' name='Q-11.3' style='display:none;'> Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+</div><div id='Q-11.3.1' name='Q-11.3.1' style='display:none;'>GOTO:11.1</div><div id='Q-12' name='Q-12' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:13</div><div id='Q-13' name='Q-13' style='display:none;'> Add the appropriate modifier (e.g., strength for melee OR dexterity for range or fitness). Subtract this value from the target's <i>hit score</i>. GOTO:6</div><div id='Q-14' name='Q-14' style='display:none;'>
+
+</div><div id='Q-15' name='Q-15' style='display:none;'> What do they want to do?
+</div><div id='Q-16' name='Q-16' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:11</div><div id='Q-17' name='Q-17' style='display:none;'> <span class="dice"><x>start</x></span>GOTO:11.1</div><div id='A-2.1' name='A-2.1' style='display:none;'> 🤔 Ability check to see if something happens
+</div><div id='A-href-2.1' name='A-href-2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.1' name='A-target-2.1' style='display:none;'></div><div id='X-2.1' name='X-2.1' style='display:none;'>🤔 Ability check to see if something happens</div><div id='A-2.2' name='A-2.2' style='display:none;'> 👹 Look up a monster
+</div><div id='A-href-2.2' name='A-href-2.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2' name='A-target-2.2' style='display:none;'></div><div id='X-2.2' name='X-2.2' style='display:none;'>👹 Look up a monster</div><div id='A-2.2.1' name='A-2.2.1' style='display:none;'> Name
+</div><div id='A-href-2.2.1' name='A-href-2.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1' name='A-target-2.2.1' style='display:none;'></div><div id='X-2.2.1' name='X-2.2.1' style='display:none;'>Name</div><div id='A-2.2.1.1' name='A-2.2.1.1' style='display:none;'><variable></div><div id='A-href-2.2.1.1' name='A-href-2.2.1.1' style='display:none;'>javascript:get_monster(getvar('mname'))</div><div id='A-target-2.2.1.1' name='A-target-2.2.1.1' style='display:none;'>text</div><div id='X-2.2.1.1' name='X-2.2.1.1' style='display:none;'>2.2.1.1</div><div id='A-2.2.1.1.1' name='A-2.2.1.1.1' style='display:none;'> New name search
+</div><div id='A-href-2.2.1.1.1' name='A-href-2.2.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.1' name='A-target-2.2.1.1.1' style='display:none;'></div><div id='X-2.2.1.1.1' name='X-2.2.1.1.1' style='display:none;'>New name search</div><div id='A-2.2.1.1.2' name='A-2.2.1.1.2' style='display:none;'> New stats search
+</div><div id='A-href-2.2.1.1.2' name='A-href-2.2.1.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.2' name='A-target-2.2.1.1.2' style='display:none;'></div><div id='X-2.2.1.1.2' name='X-2.2.1.1.2' style='display:none;'>New stats search</div><div id='A-2.2.1.1.3' name='A-2.2.1.1.3' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.2.1.1.3' name='A-href-2.2.1.1.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.1.1.3' name='A-target-2.2.1.1.3' style='display:none;'></div><div id='X-2.2.1.1.3' name='X-2.2.1.1.3' style='display:none;'>Back to Main Menu</div><div id='A-2.2.2' name='A-2.2.2' style='display:none;'> Stats
+</div><div id='A-href-2.2.2' name='A-href-2.2.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2' name='A-target-2.2.2' style='display:none;'></div><div id='X-2.2.2' name='X-2.2.2' style='display:none;'>Stats</div><div id='A-2.2.2.1' name='A-2.2.2.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1' name='A-href-2.2.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1' name='A-target-2.2.2.1' style='display:none;'>text</div><div id='X-2.2.2.1' name='X-2.2.2.1' style='display:none;'>2.2.2.1</div><div id='A-2.2.2.1.1' name='A-2.2.2.1.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1.1' name='A-href-2.2.2.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1' name='A-target-2.2.2.1.1' style='display:none;'>number</div><div id='X-2.2.2.1.1' name='X-2.2.2.1.1' style='display:none;'>2.2.2.1.1</div><div id='A-2.2.2.1.1.1' name='A-2.2.2.1.1.1' style='display:none;'><variable></div><div id='A-href-2.2.2.1.1.1' name='A-href-2.2.2.1.1.1' style='display:none;'>javascript:get_monster('',getvar('alignment'),getvar('hit'),getvar('ac'))</div><div id='A-target-2.2.2.1.1.1' name='A-target-2.2.2.1.1.1' style='display:none;'>number</div><div id='X-2.2.2.1.1.1' name='X-2.2.2.1.1.1' style='display:none;'>2.2.2.1.1.1</div><div id='A-2.2.2.1.1.1.1' name='A-2.2.2.1.1.1.1' style='display:none;'> New name search
+</div><div id='A-href-2.2.2.1.1.1.1' name='A-href-2.2.2.1.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.1' name='A-target-2.2.2.1.1.1.1' style='display:none;'></div><div id='X-2.2.2.1.1.1.1' name='X-2.2.2.1.1.1.1' style='display:none;'>New name search</div><div id='A-2.2.2.1.1.1.2' name='A-2.2.2.1.1.1.2' style='display:none;'> New stats search
+</div><div id='A-href-2.2.2.1.1.1.2' name='A-href-2.2.2.1.1.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.2' name='A-target-2.2.2.1.1.1.2' style='display:none;'></div><div id='X-2.2.2.1.1.1.2' name='X-2.2.2.1.1.1.2' style='display:none;'>New stats search</div><div id='A-2.2.2.1.1.1.3' name='A-2.2.2.1.1.1.3' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.2.2.1.1.1.3' name='A-href-2.2.2.1.1.1.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.2.2.1.1.1.3' name='A-target-2.2.2.1.1.1.3' style='display:none;'></div><div id='X-2.2.2.1.1.1.3' name='X-2.2.2.1.1.1.3' style='display:none;'>Back to Main Menu</div><div id='A-2.3' name='A-2.3' style='display:none;'> ⚔️ Run a battle
+</div><div id='A-href-2.3' name='A-href-2.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.3' name='A-target-2.3' style='display:none;'></div><div id='X-2.3' name='X-2.3' style='display:none;'>⚔️ Run a battle</div><div id='A-2.3.1' name='A-2.3.1' style='display:none;'> Everyone has rolled; we have an order
+</div><div id='A-href-2.3.1' name='A-href-2.3.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.3.1' name='A-target-2.3.1' style='display:none;'></div><div id='X-2.3.1' name='X-2.3.1' style='display:none;'>Everyone has rolled; we have an order</div><div id='A-2.3.2' name='A-2.3.2' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-2.3.2' name='A-href-2.3.2' style='display:none;'>javascript:goto(dice(20,'another_roll'))</div><div id='A-target-2.3.2' name='A-target-2.3.2' style='display:none;'></div><div id='X-2.3.2' name='X-2.3.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-2.4' name='A-2.4' style='display:none;'> 🎲 Roll a dice
+</div><div id='A-href-2.4' name='A-href-2.4' style='display:none;'>javascript:void('');</div><div id='A-target-2.4' name='A-target-2.4' style='display:none;'></div><div id='X-2.4' name='X-2.4' style='display:none;'>🎲 Roll a dice</div><div id='A-2.4.1' name='A-2.4.1' style='display:none;'> 🎲 Roll virtual D4
+</div><div id='A-href-2.4.1' name='A-href-2.4.1' style='display:none;'>javascript:goto(dice(4,'rolled'))</div><div id='A-target-2.4.1' name='A-target-2.4.1' style='display:none;'></div><div id='X-2.4.1' name='X-2.4.1' style='display:none;'>🎲 Roll virtual D4</div><div id='A-2.4.2' name='A-2.4.2' style='display:none;'> 🎲 Roll virtual D6
+</div><div id='A-href-2.4.2' name='A-href-2.4.2' style='display:none;'>javascript:goto(dice(6,'rolled'))</div><div id='A-target-2.4.2' name='A-target-2.4.2' style='display:none;'></div><div id='X-2.4.2' name='X-2.4.2' style='display:none;'>🎲 Roll virtual D6</div><div id='A-2.4.3' name='A-2.4.3' style='display:none;'> 🎲 Roll virtual D8
+</div><div id='A-href-2.4.3' name='A-href-2.4.3' style='display:none;'>javascript:goto(dice(8,'rolled'))</div><div id='A-target-2.4.3' name='A-target-2.4.3' style='display:none;'></div><div id='X-2.4.3' name='X-2.4.3' style='display:none;'>🎲 Roll virtual D8</div><div id='A-2.4.4' name='A-2.4.4' style='display:none;'> 🎲 Roll virtual D10
+</div><div id='A-href-2.4.4' name='A-href-2.4.4' style='display:none;'>javascript:goto(dice(10,'rolled'))</div><div id='A-target-2.4.4' name='A-target-2.4.4' style='display:none;'></div><div id='X-2.4.4' name='X-2.4.4' style='display:none;'>🎲 Roll virtual D10</div><div id='A-2.4.5' name='A-2.4.5' style='display:none;'> 🎲 Roll virtual D12
+</div><div id='A-href-2.4.5' name='A-href-2.4.5' style='display:none;'>javascript:goto(dice(12,'rolled'))</div><div id='A-target-2.4.5' name='A-target-2.4.5' style='display:none;'></div><div id='X-2.4.5' name='X-2.4.5' style='display:none;'>🎲 Roll virtual D12</div><div id='A-2.4.6' name='A-2.4.6' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-2.4.6' name='A-href-2.4.6' style='display:none;'>javascript:goto(dice(20,'rolled'))</div><div id='A-target-2.4.6' name='A-target-2.4.6' style='display:none;'></div><div id='X-2.4.6' name='X-2.4.6' style='display:none;'>🎲 Roll virtual D20</div><div id='A-2.4.7' name='A-2.4.7' style='display:none;'> Back to Main Menu
+</div><div id='A-href-2.4.7' name='A-href-2.4.7' style='display:none;'>javascript:void('');</div><div id='A-target-2.4.7' name='A-target-2.4.7' style='display:none;'></div><div id='X-2.4.7' name='X-2.4.7' style='display:none;'>Back to Main Menu</div><div id='A-2.5' name='A-2.5' style='display:none;'> 📚 Beginner Resources
+</div><div id='A-href-2.5' name='A-href-2.5' style='display:none;'>javascript:void('');</div><div id='A-target-2.5' name='A-target-2.5' style='display:none;'></div><div id='X-2.5' name='X-2.5' style='display:none;'>📚 Beginner Resources</div><div id='A-2.5.1' name='A-2.5.1' style='display:none;'> How to Play D&D (~4m video)
+</div><div id='A-href-2.5.1' name='A-href-2.5.1' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.1' name='A-target-2.5.1' style='display:none;'></div><div id='X-2.5.1' name='X-2.5.1' style='display:none;'>How to Play D&D (~4m video)</div><div id='A-2.5.2' name='A-2.5.2' style='display:none;'> Simplified Action Flowchart (image)
+</div><div id='A-href-2.5.2' name='A-href-2.5.2' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.2' name='A-target-2.5.2' style='display:none;'></div><div id='X-2.5.2' name='X-2.5.2' style='display:none;'>Simplified Action Flowchart (image)</div><div id='A-2.5.3' name='A-2.5.3' style='display:none;'> Saving Throws
+
+
+
+</div><div id='A-href-2.5.3' name='A-href-2.5.3' style='display:none;'>javascript:void('');</div><div id='A-target-2.5.3' name='A-target-2.5.3' style='display:none;'></div><div id='X-2.5.3' name='X-2.5.3' style='display:none;'>Saving Throws</div><div id='A-4.1' name='A-4.1' style='display:none;'> Yes
+</div><div id='A-href-4.1' name='A-href-4.1' style='display:none;'>javascript:void('');</div><div id='A-target-4.1' name='A-target-4.1' style='display:none;'></div><div id='X-4.1' name='X-4.1' style='display:none;'>Yes</div><div id='A-4.2' name='A-4.2' style='display:none;'> 🎲 No; roll virtual D20 again
+
+
+</div><div id='A-href-4.2' name='A-href-4.2' style='display:none;'>javascript:goto(dice(20,'another_roll'))</div><div id='A-target-4.2' name='A-target-4.2' style='display:none;'></div><div id='X-4.2' name='X-4.2' style='display:none;'>🎲 No; roll virtual D20 again</div><div id='A-5.1' name='A-5.1' style='display:none;'> Attack
+</div><div id='A-href-5.1' name='A-href-5.1' style='display:none;'>javascript:void('');</div><div id='A-target-5.1' name='A-target-5.1' style='display:none;'></div><div id='X-5.1' name='X-5.1' style='display:none;'>Attack</div><div id='A-5.2' name='A-5.2' style='display:none;'> Saving
+</div><div id='A-href-5.2' name='A-href-5.2' style='display:none;'>javascript:void('');</div><div id='A-target-5.2' name='A-target-5.2' style='display:none;'></div><div id='X-5.2' name='X-5.2' style='display:none;'>Saving</div><div id='A-5.3' name='A-5.3' style='display:none;'> Other
+</div><div id='A-href-5.3' name='A-href-5.3' style='display:none;'>javascript:void('');</div><div id='A-target-5.3' name='A-target-5.3' style='display:none;'></div><div id='X-5.3' name='X-5.3' style='display:none;'>Other</div><div id='A-6.1' name='A-6.1' style='display:none;'> Yes
+</div><div id='A-href-6.1' name='A-href-6.1' style='display:none;'>javascript:void('');</div><div id='A-target-6.1' name='A-target-6.1' style='display:none;'></div><div id='X-6.1' name='X-6.1' style='display:none;'>Yes</div><div id='A-6.2' name='A-6.2' style='display:none;'> No
+</div><div id='A-href-6.2' name='A-href-6.2' style='display:none;'>javascript:void('');</div><div id='A-target-6.2' name='A-target-6.2' style='display:none;'></div><div id='X-6.2' name='X-6.2' style='display:none;'>No</div><div id='A-7.1' name='A-7.1' style='display:none;'> Attack
+</div><div id='A-href-7.1' name='A-href-7.1' style='display:none;'>javascript:void('');</div><div id='A-target-7.1' name='A-target-7.1' style='display:none;'></div><div id='X-7.1' name='X-7.1' style='display:none;'>Attack</div><div id='A-7.2' name='A-7.2' style='display:none;'> Saving
+</div><div id='A-href-7.2' name='A-href-7.2' style='display:none;'>javascript:void('');</div><div id='A-target-7.2' name='A-target-7.2' style='display:none;'></div><div id='X-7.2' name='X-7.2' style='display:none;'>Saving</div><div id='A-7.3' name='A-7.3' style='display:none;'> Other
+</div><div id='A-href-7.3' name='A-href-7.3' style='display:none;'>javascript:void('');</div><div id='A-target-7.3' name='A-target-7.3' style='display:none;'></div><div id='X-7.3' name='X-7.3' style='display:none;'>Other</div><div id='A-8.1' name='A-8.1' style='display:none;'> Yes
+</div><div id='A-href-8.1' name='A-href-8.1' style='display:none;'>javascript:void('');</div><div id='A-target-8.1' name='A-target-8.1' style='display:none;'></div><div id='X-8.1' name='X-8.1' style='display:none;'>Yes</div><div id='A-8.2' name='A-8.2' style='display:none;'> No
+</div><div id='A-href-8.2' name='A-href-8.2' style='display:none;'>javascript:void('');</div><div id='A-target-8.2' name='A-target-8.2' style='display:none;'></div><div id='X-8.2' name='X-8.2' style='display:none;'>No</div><div id='A-9.1' name='A-9.1' style='display:none;'> Weapon
+</div><div id='A-href-9.1' name='A-href-9.1' style='display:none;'>javascript:void('');</div><div id='A-target-9.1' name='A-target-9.1' style='display:none;'></div><div id='X-9.1' name='X-9.1' style='display:none;'>Weapon</div><div id='A-9.2' name='A-9.2' style='display:none;'> Spell
+</div><div id='A-href-9.2' name='A-href-9.2' style='display:none;'>javascript:void('');</div><div id='A-target-9.2' name='A-target-9.2' style='display:none;'></div><div id='X-9.2' name='X-9.2' style='display:none;'>Spell</div><div id='A-10.1' name='A-10.1' style='display:none;'> They rolled
+</div><div id='A-href-10.1' name='A-href-10.1' style='display:none;'>javascript:void('');</div><div id='A-target-10.1' name='A-target-10.1' style='display:none;'></div><div id='X-10.1' name='X-10.1' style='display:none;'>They rolled</div><div id='A-10.2' name='A-10.2' style='display:none;'> Roll virtual D20
+
+
+</div><div id='A-href-10.2' name='A-href-10.2' style='display:none;'>javascript:goto(dice(20,'d20attack'))</div><div id='A-target-10.2' name='A-target-10.2' style='display:none;'></div><div id='X-10.2' name='X-10.2' style='display:none;'>Roll virtual D20</div><div id='A-11.1' name='A-11.1' style='display:none;'> No
+</div><div id='A-href-11.1' name='A-href-11.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1' name='A-target-11.1' style='display:none;'></div><div id='X-11.1' name='X-11.1' style='display:none;'>No</div><div id='A-11.1.1' name='A-11.1.1' style='display:none;'> Yes
+</div><div id='A-href-11.1.1' name='A-href-11.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.1' name='A-target-11.1.1' style='display:none;'></div><div id='X-11.1.1' name='X-11.1.1' style='display:none;'>Yes</div><div id='A-11.1.1.1' name='A-11.1.1.1' style='display:none;'> They rolled
+</div><div id='A-href-11.1.1.1' name='A-href-11.1.1.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.1.1' name='A-target-11.1.1.1' style='display:none;'></div><div id='X-11.1.1.1' name='X-11.1.1.1' style='display:none;'>They rolled</div><div id='A-11.1.1.2' name='A-11.1.1.2' style='display:none;'> 🎲 Roll virtual D4
+</div><div id='A-href-11.1.1.2' name='A-href-11.1.1.2' style='display:none;'>javascript:goto(dice(4,'damageD'))</div><div id='A-target-11.1.1.2' name='A-target-11.1.1.2' style='display:none;'></div><div id='X-11.1.1.2' name='X-11.1.1.2' style='display:none;'>🎲 Roll virtual D4</div><div id='A-11.1.1.3' name='A-11.1.1.3' style='display:none;'> 🎲 Roll virtual D6
+</div><div id='A-href-11.1.1.3' name='A-href-11.1.1.3' style='display:none;'>javascript:goto(dice(6,'damageD'))</div><div id='A-target-11.1.1.3' name='A-target-11.1.1.3' style='display:none;'></div><div id='X-11.1.1.3' name='X-11.1.1.3' style='display:none;'>🎲 Roll virtual D6</div><div id='A-11.1.1.4' name='A-11.1.1.4' style='display:none;'> 🎲 Roll virtual D8
+</div><div id='A-href-11.1.1.4' name='A-href-11.1.1.4' style='display:none;'>javascript:goto(dice(8,'damageD'))</div><div id='A-target-11.1.1.4' name='A-target-11.1.1.4' style='display:none;'></div><div id='X-11.1.1.4' name='X-11.1.1.4' style='display:none;'>🎲 Roll virtual D8</div><div id='A-11.1.1.5' name='A-11.1.1.5' style='display:none;'> 🎲 Roll virtual D10
+</div><div id='A-href-11.1.1.5' name='A-href-11.1.1.5' style='display:none;'>javascript:goto(dice(10,'damageD'))</div><div id='A-target-11.1.1.5' name='A-target-11.1.1.5' style='display:none;'></div><div id='X-11.1.1.5' name='X-11.1.1.5' style='display:none;'>🎲 Roll virtual D10</div><div id='A-11.1.1.6' name='A-11.1.1.6' style='display:none;'> 🎲 Roll virtual D12
+
+</div><div id='A-href-11.1.1.6' name='A-href-11.1.1.6' style='display:none;'>javascript:goto(dice(12,'damageD'))</div><div id='A-target-11.1.1.6' name='A-target-11.1.1.6' style='display:none;'></div><div id='X-11.1.1.6' name='X-11.1.1.6' style='display:none;'>🎲 Roll virtual D12</div><div id='A-11.1.2' name='A-11.1.2' style='display:none;'> No
+</div><div id='A-href-11.1.2' name='A-href-11.1.2' style='display:none;'>javascript:void('');</div><div id='A-target-11.1.2' name='A-target-11.1.2' style='display:none;'></div><div id='X-11.1.2' name='X-11.1.2' style='display:none;'>No</div><div id='A-11.2' name='A-11.2' style='display:none;'> Advantage
+</div><div id='A-href-11.2' name='A-href-11.2' style='display:none;'>javascript:void('');</div><div id='A-target-11.2' name='A-target-11.2' style='display:none;'></div><div id='X-11.2' name='X-11.2' style='display:none;'>Advantage</div><div id='A-11.2.1' name='A-11.2.1' style='display:none;'> They made their second roll
+</div><div id='A-href-11.2.1' name='A-href-11.2.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.2.1' name='A-target-11.2.1' style='display:none;'></div><div id='X-11.2.1' name='X-11.2.1' style='display:none;'>They made their second roll</div><div id='A-11.2.2' name='A-11.2.2' style='display:none;'> 🎲 Roll virtual D20
+</div><div id='A-href-11.2.2' name='A-href-11.2.2' style='display:none;'>javascript:goto(dice(20,'d20attack2'))</div><div id='A-target-11.2.2' name='A-target-11.2.2' style='display:none;'></div><div id='X-11.2.2' name='X-11.2.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-11.3' name='A-11.3' style='display:none;'> Disadvantage
+</div><div id='A-href-11.3' name='A-href-11.3' style='display:none;'>javascript:void('');</div><div id='A-target-11.3' name='A-target-11.3' style='display:none;'></div><div id='X-11.3' name='X-11.3' style='display:none;'>Disadvantage</div><div id='A-11.3.1' name='A-11.3.1' style='display:none;'> They made their second roll
+</div><div id='A-href-11.3.1' name='A-href-11.3.1' style='display:none;'>javascript:void('');</div><div id='A-target-11.3.1' name='A-target-11.3.1' style='display:none;'></div><div id='X-11.3.1' name='X-11.3.1' style='display:none;'>They made their second roll</div><div id='A-11.3.2' name='A-11.3.2' style='display:none;'> 🎲 Roll virtual D20
+
+</div><div id='A-href-11.3.2' name='A-href-11.3.2' style='display:none;'>javascript:goto(dice(20,'d20attack2'))</div><div id='A-target-11.3.2' name='A-target-11.3.2' style='display:none;'></div><div id='X-11.3.2' name='X-11.3.2' style='display:none;'>🎲 Roll virtual D20</div><div id='A-15.1' name='A-15.1' style='display:none;'> Cast a spell
+</div><div id='A-href-15.1' name='A-href-15.1' style='display:none;'>javascript:void('');</div><div id='A-target-15.1' name='A-target-15.1' style='display:none;'></div><div id='X-15.1' name='X-15.1' style='display:none;'>Cast a spell</div><div id='A-15.2' name='A-15.2' style='display:none;'> Dash
+</div><div id='A-href-15.2' name='A-href-15.2' style='display:none;'>javascript:void('');</div><div id='A-target-15.2' name='A-target-15.2' style='display:none;'></div><div id='X-15.2' name='X-15.2' style='display:none;'>Dash</div><div id='A-15.3' name='A-15.3' style='display:none;'> Dodge
+</div><div id='A-href-15.3' name='A-href-15.3' style='display:none;'>javascript:void('');</div><div id='A-target-15.3' name='A-target-15.3' style='display:none;'></div><div id='X-15.3' name='X-15.3' style='display:none;'>Dodge</div><div id='A-15.4' name='A-15.4' style='display:none;'> Disengage
+</div><div id='A-href-15.4' name='A-href-15.4' style='display:none;'>javascript:void('');</div><div id='A-target-15.4' name='A-target-15.4' style='display:none;'></div><div id='X-15.4' name='X-15.4' style='display:none;'>Disengage</div><div id='A-15.5' name='A-15.5' style='display:none;'> Escape
+</div><div id='A-href-15.5' name='A-href-15.5' style='display:none;'>javascript:void('');</div><div id='A-target-15.5' name='A-target-15.5' style='display:none;'></div><div id='X-15.5' name='X-15.5' style='display:none;'>Escape</div><div id='A-15.6' name='A-15.6' style='display:none;'> Help
+</div><div id='A-href-15.6' name='A-href-15.6' style='display:none;'>javascript:void('');</div><div id='A-target-15.6' name='A-target-15.6' style='display:none;'></div><div id='X-15.6' name='X-15.6' style='display:none;'>Help</div><div id='A-15.7' name='A-15.7' style='display:none;'> Ready
+</div><div id='A-href-15.7' name='A-href-15.7' style='display:none;'>javascript:void('');</div><div id='A-target-15.7' name='A-target-15.7' style='display:none;'></div><div id='X-15.7' name='X-15.7' style='display:none;'>Ready</div><div id='A-15.8' name='A-15.8' style='display:none;'> When I said 'other,' I meant OTHER
+
+</div><div id='A-href-15.8' name='A-href-15.8' style='display:none;'>javascript:void('');</div><div id='A-target-15.8' name='A-target-15.8' style='display:none;'></div><div id='X-15.8' name='X-15.8' style='display:none;'>When I said 'other,' I meant OTHER</div>
+<script>
+	var QVnames = [['1','greetings'],['2','start'],['2.2','monster'],['2.2.1','mname'],['2.2.1.1','mname2'],['2.2.1.1.1','2.2.1.1.1'],['2.2.1.1.2','2.2.1.1.2'],['2.2.1.1.3','2.2.1.1.3'],['2.2.2','alignment'],['2.2.2.1','hit'],['2.2.2.1.1','ac'],['2.2.2.1.1.1','2.2.2.1.1.1'],['2.2.2.1.1.1.1','2.2.2.1.1.1.1'],['2.2.2.1.1.1.2','2.2.2.1.1.1.2'],['2.2.2.1.1.1.3','2.2.2.1.1.1.3'],['2.3','initiative'],['2.3.1','ready'],['2.4','pick_dice'],['2.4.7','2.4.7'],['2.5','2.5'],['3','rolled'],['4','another_roll'],['4.1','4.1'],['5','start_fight'],['5.1','5.1'],['5.2','5.2'],['5.3','5.3'],['6','more_fight'],['6.1','6.1'],['6.2','6.2'],['7','next_fight'],['7.1','7.1'],['7.2','7.2'],['7.3','7.3'],['8','fight_over'],['8.1','8.1'],['8.2','8.2'],['9','attack'],['9.1','9.1'],['9.2','9.2'],['10','weapon'],['10.1','10.1'],['11','d20roll_after'],['11.1','compare_attack'],['11.1.1','11.1.1'],['11.1.1.1','11.1.1.1'],['11.1.2','11.1.2'],['11.2','11.2'],['11.2.1','11.2.1'],['11.3','11.3'],['11.3.1','11.3.1'],['12','damageD'],['13','damage'],['14','spell'],['15','other'],['16','d20attack'],['17','d20attack2']];
+</script>
+</textarea><textarea id="transcript" name="transcript" style="display:none;" disabled="disabled"></textarea><div style="float:left;width:100%;margin:15px 0 0px 0;border-top: solid 1px #ddd;"><div id=credits class=credits style="display:none;"><div class=credit_text></div></div><p align=center> <a href="https://www.qnamarkup.org/" target=_top>code your own</a></p></div></FORM>
+<script src="https://colarusso.github.io/dm/js/srd_5e_monsters.js" type="text/javascript"></script>
+<script src="https://colarusso.github.io/dmjs/functions.js" type="text/javascript"></script>
+<style>
+.dice {
+	font-size:80px;
+	line-height:100px;
+	font-weight:600;
+}
+</style>
+
+</div></div>
+<script type="text/javascript">
+	var QNum = 0;
+	var Qhtml = "";
+	var Dhtml = "";
+	var label = "";
+	var GOTOfired = 0;
+	var path = [];
+	var doc_bin = [];
+	var convo_bin = [];
+	var freetext = 0;
+	var goingback = 0;
+
+	$("#conversation input").on("keypress", 'form', function (e) {
+    	var code = e.keyCode || e.which;
+    	if (code == 13) {
+        	e.preventDefault();
+        	return false;
+    	}
+	});
+
+	$('#FORM').on('keyup keypress', function(e) {
+  		var keyCode = e.keyCode || e.which;
+  		if (keyCode === 13) {
+    		e.preventDefault();
+    		return false;
+  		}
+	});
+
+	function answerQ(lb,restart) {
+		currentQ = label;
+		label = lb;
+		Dhtml = 'D-'+label;
+		Qhtml = 'Q-'+label;
+		var Ahtml = 'A-'+label;
+		var Jhtml = 'J-'+QNum;
+		var Xhtml = 'X-'+label;
+		var Xihtml = 'Xi-'+label;
+
+		var input_error = 0;
+		if (restart == undefined) {
+			var regexp = new RegExp("\<variable\>");
+			//if (document.getElementById(Xihtml)) {
+			//	console.log("document.getElementById("+Xihtml+").value: "+document.getElementById(Xihtml).value);
+			//} else {
+			//	console.log("NO document.getElementById("+Xihtml+").value: ");
+			//}
+			if (document.getElementById(Ahtml).innerHTML.match(regexp)) {
+				document.getElementById(Xihtml).value = document.getElementById(Xihtml).value.replace(/(^\s*|\s*$)/,"");
+				if (document.getElementById(Xihtml).value == "") {
+					input_error = "Your answer appears to be empty.";
+					label = currentQ;
+				} else {
+					document.getElementById(Xihtml).value = document.getElementById(Xihtml).value.replace(/</g,"<");
+					document.getElementById(Xihtml).value = document.getElementById(Xihtml).value.replace(/>/g,">");
+				}
+			}
+		}
+
+		if (input_error != 0) {
+			alert(input_error);
+			document.getElementById(Xihtml).focus();
+		} else {
+			if (restart == undefined) {
+				//if (document.getElementById(Ahtml).innerHTML!="") {
+					document.getElementById('QandA').innerHTML += "<div id=\"break-at-"+QNum+"\" class='frame'><div class='full'><div class='ans_text'>"+document.getElementById(Ahtml).innerHTML+"</div></div><div class='ans_arrow'></div></div></div></div>";
+				//}
+				// insert answer from button
+				if (document.getElementById(valueis(currentQ))) {
+					document.getElementById(valueis(currentQ)).outerHTML='';
+				}
+				if (document.getElementById(Xihtml)) {
+					document.getElementById('QandA').innerHTML = "<textarea style=\"display:none;\" id=\""+valueis(currentQ)+"\" name=\""+valueis(currentQ)+"\">"+document.getElementById(Xihtml).value+"</textarea>\n" + document.getElementById('QandA').innerHTML
+				} else {
+					document.getElementById('QandA').innerHTML = "<textarea style=\"display:none;\" id=\""+valueis(currentQ)+"\" name=\""+valueis(currentQ)+"\">"+document.getElementById(Xhtml).innerHTML+"</textarea>\n" + document.getElementById('QandA').innerHTML
+				}
+				if (document.getElementById('QandA').innerHTML.match(regexp)) {
+				 	var duplicatevars = new RegExp("id=\""+document.getElementById(Xhtml).innerHTML+"(.)*"+document.getElementById(Xhtml).innerHTML+"\"","g");
+					document.getElementById('QandA').innerHTML = document.getElementById('QandA').innerHTML.replace(duplicatevars, "");
+					document.getElementById('QandA').innerHTML = document.getElementById('QandA').innerHTML.replace(/\<variable\>(\<\/variable\>)?/, "<input type=hidden id=\""+document.getElementById(Xhtml).innerHTML+"\" name=\""+document.getElementById(Xhtml).innerHTML+"\" value=\""+document.getElementById(Xihtml).value+"\"/>"+document.getElementById(Xihtml).value);
+					//document.getElementById('transcript').value = document.getElementById('transcript').value.replace(/\<variable\>(\<\/variable\>)?/, document.getElementById(Xihtml).value+"\n");
+					var thisvariable = new RegExp("<(X|x)>"+document.getElementById(Xhtml).innerHTML+"<\/(X|x)>","g");
+					//document.getElementById('doc').innerHTML = document.getElementById('doc').innerHTML.replace(thisvariable, document.getElementById(document.getElementById(Xhtml).innerHTML).innerHTML);
+					//document.getElementById('ondeck').innerHTML = document.getElementById('ondeck').innerHTML.replace(thisvariable, document.getElementById(valueis(currentQ)).innerHTML);
+					//console.log("thisvariable: "+thisvariable);
+					//console.log("Variable name: "+valueis(currentQ));
+					//console.log("Variable value: "+document.getElementById(valueis(currentQ)).innerHTML);
+					if(document.getElementById(Ahtml).innerHTML != "") {
+						//document.getElementById('transcript').value += "USER: "+document.getElementById(Xihtml).value+"\n";
+						convo_bin.push("USER: "+document.getElementById(Xihtml).value+"\n");
+					}
+				} else {
+					//document.getElementById('transcript').value += "USER: "+document.getElementById(Ahtml).innerHTML+"\n";
+					convo_bin.push("USER: "+document.getElementById(Ahtml).innerHTML+"\n");
+				}
+				document.getElementById('Choices').innerHTML = '';
+				if (goingback == 0) {
+					setTimeout(function() {renderQnA(Qhtml,Jhtml,Dhtml,restart)}, 300);
+				} else {
+					renderQnA(Qhtml,Jhtml,Dhtml,restart);
+				}
+			} else {
+				document.getElementById('Choices').innerHTML = '';
+				path = [];
+				renderQnA(Qhtml,Jhtml,Dhtml,restart);
+			}
+
+		}
+
+	}
+
+
+	function renderQnA(Qht,Jht,Dht,restar) {
+		Dhtml = Dht;
+
+		GOTOfired = 0;
+		path.push(label);
+
+		swapGOTO(Qht,Jht);
+
+		console.log("After swap: "+GOTOfired);
+
+		if (GOTOfired == 0) {
+			document.getElementById('QandA').innerHTML += "<div id="+Jht+" style=\"float:left;width:100%;height:1px;\"> </div>";
+		}
+		document.getElementById('QandA').innerHTML += "<div class='frame'><div class='full'><div class='question_text'>"+swapvar(document.getElementById(Qhtml).innerHTML)+"</div></div><div class='question_arrow'></div></div>";
+
+		document.getElementById('QandA').innerHTML = document.getElementById('QandA').innerHTML.replace(/(\<br\>){2}/gi,"</div></div><div class='question_arrow'></div></div></div></div><div class='frame'><div class='full'><div class='question_text'>");
+		document.getElementById('QandA').innerHTML = document.getElementById('QandA').innerHTML.replace(/(\<br\> \<br\>)/gi,"<br><br>");
+
+		// add question
+		//document.getElementById('transcript').value += swapvar("BOT: "+ document.getElementById(Qhtml).innerHTML);
+		//document.getElementById('transcript').value = document.getElementById('transcript').value.replace(/(\<br\>){2}/gi,"\nBOT: ");
+		this_text = swapvar("BOT: "+ document.getElementById(Qhtml).innerHTML);
+		this_text = this_text.replace(/(\<br\>){2}/gi,"\nBOT: ");
+		convo_bin.push(this_text);
+
+		// make push doc into array in doc() cycle through array and put into output
+		// maybe remove doc div
+		if (document.getElementById(Dhtml)) {
+			doc_bin.push([document.getElementById(Dhtml).innerHTML,currentQ]);
+			console.log("Add to Doc ("+Dhtml+"): "+document.getElementById(Dhtml).innerHTML);
+			//document.getElementById('doc').innerHTML += document.getElementById(Dhtml).innerHTML;
+		}
+
+		tmp = getElementsByIdRegExp("div", "A-"+label+"(\\.{1}\\d){1}$");
+		a_href = getElementsByIdRegExp("div", "A-href-"+label+"(\\.{1}\\d){1}$");
+		a_target = getElementsByIdRegExp("div", "A-target-"+label+"(\\.{1}\\d){1}$");
+		tmp_x = getElementsByIdRegExp("div", "X-"+label+"(\\.{1}\\d){1}$");
+		var Xishere = 0;
+		for ( var i = 0; i < tmp.length; i++ ) {
+			var nextlabel = tmp[i].id.substr(2);
+			var Xihtml = 'Xi-'+nextlabel;
+			var regexp = "\<variable\>";
+			var regexp_js = "^javascript:";
+			var regexp_load_js = "loadQnA";
+			var script_call = "";
+			if (tmp[i].innerHTML.match(regexp)) {
+				if (a_href[i].innerHTML.match('^(_blank:)?javascript:')) {
+					script_call = a_href[i].innerHTML.replace(/^(_blank:)?javascript:/gi,"");
+				} else {
+					if (a_href[i].innerHTML.match('^_blank:')) {
+						script_call = "window.open('"+a_href[i].innerHTML.replace(/^_blank:/,"")+"','_blank');";
+					} else {
+						script_call = "location.href = '"+a_href[i].innerHTML+"';";
+					}
+				}
+
+				if(a_href[i].innerHTML.match(regexp_load_js)){
+					//script_call = "xv = document.getElementById('"+Xihtml+"').value;" + script_call.replace(/this\.innerHTML/gi,"xv")
+					script_call = script_call.replace(/this\.innerHTML/gi,"document.getElementById('"+Xihtml+"').value")
+					document.getElementById('Choices').innerHTML += "<div class=\"xdiv\"><input type=\""+a_target[i].innerHTML+"\" id=\""+Xihtml+"\" name=\""+Xihtml+"\" class=\"xinput\" onkeypress=\"if (event.keyCode==13){"+script_call+"}\"/><a href=\"javascript:void('');\" class=\"xbutton\" onClick=\""+script_call+"\"><span class=\"qpad\">Send</span></a></div>";
+				} else {
+					script_call = script_call.replace(/this\.innerHTML/gi,"document.getElementById('"+Xihtml+"').value")
+					document.getElementById('Choices').innerHTML += "<div class=\"xdiv\"><input type=\""+a_target[i].innerHTML+"\" id=\""+Xihtml+"\" name=\""+Xihtml+"\" class=\"xinput\" onkeypress=\"if (event.keyCode==13){answerQ('"+nextlabel+"');"+script_call+"}\"/><a href=\"javascript:void('');\" class=\"xbutton\" onClick=\"answerQ('"+nextlabel+"');"+script_call+"\"><span class=\"qpad\">Send</span></a></div>";
+				}
+				Xishere = Xihtml;
+				freetext = Xihtml;
+			} else if (a_href[i].innerHTML.match(regexp_js) && a_href[i].innerHTML != "javascript:void('');") {
+				tmp[i].innerHTML = tmp[i].innerHTML.replace(/(\<br\>){2}/gi,"<br> <br>");
+				var script_call = a_href[i].innerHTML.replace(/^javascript:/gi,"");
+				if(a_href[i].innerHTML.match(regexp_load_js)){
+					document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"qabutton\" onClick=\""+script_call+"\" "+a_target[i].innerHTML+"><span class=\"qpad\">"+tmp[i].innerHTML+"</span></a>";
+				} else {
+					document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"qabutton\" onClick=\"answerQ('"+nextlabel+"');"+script_call+"\" "+a_target[i].innerHTML+"><span class=\"qpad\">"+tmp[i].innerHTML+"</span></a>";
+				}
+				freetext = 0;
+			} else {
+				tmp[i].innerHTML = tmp[i].innerHTML.replace(/(\<br\>){2}/gi,"<br> <br>");
+				document.getElementById('Choices').innerHTML += "<a href=\""+a_href[i].innerHTML+"\" class=\"qabutton\" onClick=\"answerQ('"+nextlabel+"');\" "+a_target[i].innerHTML+"><span class=\"qpad\">"+tmp[i].innerHTML+"</span></a>";
+				freetext = 0;
+			}
+		}
+
+		if (restar == undefined) {
+
+			document.getElementById('Choices').innerHTML += "<div class=\"standard_buttons\">";
+			if (QNum > 1) {
+				document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"sbutton\" onClick=\"goback(QNum);\">GO BACK ONE</a>";
+				document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"sbutton\" style=\"float:right\" onClick=\"startAT('1');\">START OVER</a>";
+			} else if (QNum == 1) {
+				document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"sbutton\" onClick=\"startAT('1');\">GO BACK ONE</a>";
+				document.getElementById('Choices').innerHTML += "<a href=\"javascript:void('');\" class=\"sbutton\" style=\"float:right\" onClick=\"startAT('1');\">START OVER</a>";
+			}
+			document.getElementById('Choices').innerHTML += "</div>"
+		}
+
+		if (QNum != 0) {
+			if (goingback == 0) {
+				scroll2Q(Jht,800);
+			} else {
+				window.scrollTo(0, document.getElementById(Jht).offsetTop);
+			}
+		} else if (restar != undefined) {
+			window.scrollTo(0,0);
+		}
+		if (Xishere != 0 && window.self == window.top) {
+			console.log("Set focus for: "+Xishere);
+			document.getElementById(Xishere).focus();
+		}
+		console.log("Q#: "+QNum);
+		console.log("New Path: "+path);
+		QNum++;
+		goingback = 0;
+
+	}
+
+
+	function swapGOTO(QH,JH) {
+		var regex = new RegExp("GOTO:(\d*)(\.\d+)*");
+		if (regex.test(document.getElementById(QH).innerHTML)) {
+			var Qtext = document.getElementById(QH).innerHTML.match(/(GOTO:(\d*)(.\s*\d+)*)/);
+			document.getElementById('QandA').innerHTML += "<div id="+JH+" style=\"float:left;width:100%;height:1px;\"> </div>";
+			// Add question
+			// note I added () around the < to avoid a < followed by a ? which causes problems in php
+			var Qtexttrans = document.getElementById(QH).innerHTML.replace(/(<)?GOTO:(\d*)(.\s*\d+)*>?/,"");
+			Qtexttrans = Qtexttrans.replace(/\s*$/,"");
+			if (Qtexttrans != "") {
+				//document.getElementById('transcript').value += swapvar("BOT: "+Qtexttrans+"\n");
+				convo_bin.push(swapvar("BOT: "+Qtexttrans+"\n"));
+			}
+			if (document.getElementById(QH).innerHTML.match(/^GOTO:(\d*)(.\s*\d+)*/)) {
+				document.getElementById('QandA').innerHTML += document.getElementById(QH).innerHTML.replace(/(<)?GOTO:(\d*)(.\s*\d+)*>?/,"<"+Qtext+">");
+			} else {
+				document.getElementById('QandA').innerHTML += "<div class='frame'><div class='full'><div class='question_text'>"+ swapvar(document.getElementById(QH).innerHTML.replace(/(<)?GOTO:(\d*)(.\s*\d+)*>?/,"<"+Qtext+">"))+"</div></div><div class='question_arrow'></div></div>";
+			}
+			// replace GOTO with text
+			label = Qtext[0].replace("GOTO:","");
+			Qhtml = 'Q-'+label;
+			if (document.getElementById(Dhtml)) {
+				doc_bin.push([document.getElementById(Dhtml).innerHTML,currentQ]);
+				console.log("Add to Doc ("+Dhtml+"): "+document.getElementById(Dhtml).innerHTML);
+				//document.getElementById('doc').innerHTML += document.getElementById(Dhtml).innerHTML;
+			}
+			Dhtml = 'D-'+label;
+			GOTOfired = 1;
+			console.log("In swap: "+GOTOfired);
+			swapGOTO(Qhtml,JH);
+		}
+	}
+
+
+	function scroll2Q(id,speed) {
+		var top = document.getElementById(id).offsetTop; //Getting Y of target element
+		console.log("Jump to Y for ("+id+"): "+top);
+		//adapted from https://github.com/Yappli/smooth-scroll
+		var moving_frequency = 5; // Affects performance !
+		var hop_count = speed/moving_frequency
+        var getScrollTopDocumentAtBegin = document.documentElement.scrollTop + document.body.scrollTop;
+        var gap = (top - getScrollTopDocumentAtBegin) / hop_count;
+		for(var i = 1; i <= hop_count; i++)
+        {
+        	(function()
+           	{
+           		var hop_top_position = gap*i;
+           	    setTimeout(function(){  window.scrollTo(0, hop_top_position + getScrollTopDocumentAtBegin); }, moving_frequency*i);
+           	 })();
+        }
+	}
+
+	function getElementsByIdIs(selectorTag, name) {
+		var items = [];
+		var myPosts = document.getElementsByTagName(selectorTag);
+			//omitting undefined null check for brevity
+			if (myPosts[0].id == name) {
+				items.push(myPosts[0]);
+			}
+
+		return items;
+	}
+
+	function getElementsByIdRegExp(selectorTag, expression) {
+		// note you need to escape \ in the expression with \, i.e., \\ = \
+		var regex = new RegExp(expression);
+		var items = [];
+		var myPosts = document.getElementsByTagName(selectorTag);
+		for (var i = 0; i < myPosts.length; i++) {
+			if (regex.test(myPosts[i].id)) {
+				items.push(myPosts[i]);
+			}
+		}
+
+		return items;
+	}
+
+	// startAT QnA
+	function startAT(id) {
+		document.getElementById('ondeck').innerHTML = document.getElementById('original').value;
+		document.getElementById('QandA').innerHTML = "";
+		//document.getElementById('transcript').value = "";
+		doc_bin = [];
+		convo_bin = [];
+		QNum = 0;
+		answerQ(id,'1');
+	}
+
+	//show funtion
+	function show(id) {
+   		if (document.getElementById) { // DOM3 = IE5, NS6
+        	document.getElementById(id).style.display = 'block';
+    	} else {
+        	if (document.layers) {
+            	document.id.display = 'block';
+        	} else {
+                document.all.id.style.display = 'block';
+        	}
+    	}
+	}
+
+	//hide funtion
+	function hide(id) {
+    	if (document.getElementById) { // DOM3 = IE5, NS6
+        	document.getElementById(id).style.display = 'none';
+    	} else {
+        	if (document.layers) {
+                document.id.display = 'none';
+        	} else {
+                document.all.id.style.display = 'none';
+        	}
+    	}
+	}
+
+	//show OR hide funtion depends on if element is shown or hidden
+	function shoh(id) {
+    	if (document.getElementById) { // DOM3 = IE5, NS6
+        	if (document.getElementById(id).style.display == "none"){
+            	document.getElementById(id).style.display = 'block';
+        	} else {
+            	document.getElementById(id).style.display = 'none';
+        	}
+    	} else {
+        	if (document.layers) {
+            	if (document.id.display == "none"){
+                	document.id.display = 'block';
+            	} else {
+                	document.id.display = 'none';
+            	}
+        	} else {
+            	if (document.all.id.style.visibility == "none"){
+                	document.all.id.style.display = 'block';
+            	} else {
+                	document.all.id.style.display = 'none';
+            	}
+        	}
+    	}
+	}
+
+	function swapvar(input) {
+		var output;
+		for(var i = 0; i < QVnames.length; i++) {
+			if (document.getElementById(QVnames[i][1])) {
+				var item = QVnames[i][1].replace(/\./g,"\\.");
+				var varegx = new RegExp("<x>"+item+"<\/x>","gi");
+				//console.log(QVnames[i][1]);
+				input = input.replace(varegx,document.getElementById(QVnames[i][1]).innerHTML);
+			}
+		}
+		output = input
+		return output
+	}
+
+	function docforindex(indexID) {
+		for(var i = 0; i < doc_bin.length; i++) {
+			if(doc_bin[i][1] == indexID) {
+				return true;
+			}
+		}
+	}
+	function indexis(variablename) {
+		for(var i = 0; i < QVnames.length; i++) {
+			if(QVnames[i][1] == variablename) {
+				return QVnames[i][0];
+			}
+		}
+	}
+	function valueis(variablekey) {
+		for(var i = 0; i < QVnames.length; i++) {
+			if(QVnames[i][0] == variablekey) {
+				return QVnames[i][1];
+			}
+		}
+	}
+
+	function look4goto(qn,id) {
+		console.log("GOTO SEARCH: "+id);
+		var qID = "Q-"+id;
+		// If there's a doc in the XXXXXXXXXXXXXXXX, remove it.
+		if (docforindex(path.indexOf(id))) {
+			console.log("DOC FOUND "+id);
+			doc_bin.splice(doc_bin.length-1,1);
+		}
+		convo_bin.splice(-2,2);
+		var re = new RegExp("GOTO:(([a-z0-9\._-]*)\s*)$","gi");
+		if (document.getElementById(qID).innerHTML.match(re)) {
+			convo_bin.splice(-1,1);
+			console.log("GOTO FOUND: "+id);
+			textinput = re.exec(document.getElementById(qID).innerHTML)[2]+"";
+			if (docforindex(indexis(textinput))) {
+				document.getElementById("Xi-"+path[qn]).value = document.getElementById(valueis(textinput)).innerHTML;
+				console.log("DOC FOUND "+textinput);
+				doc_bin.splice(doc_bin.length-1,1);
+			}
+			look4goto(qn,textinput);
+		}
+	}
+
+	function goback(qn) {
+		Qlast = qn - 3
+		qn = qn - 2;
+		label = path[qn];
+		goingback = 1;
+
+		console.log("GO BACK TO:"+qn);
+		var re = new RegExp('(((^|\\n).*)*)<div id="break-at-'+qn+'" class="frame">((.*)(\\W.*))*', 'g');
+		document.getElementById("QandA").innerHTML = document.getElementById("QandA").innerHTML.replace(re, '$1');
+		document.getElementById('Choices').innerHTML += "<input type=\"hidden\" id=\"Xi-"+path[qn]+"\" name=\"Xi-"+path[qn]+"\" value=\"\">";
+			console.log("####################: "+path[path.length-1]);
+
+		//look4goto(qn,path[path.length-1]);
+
+		path.splice(-1,1);
+		convo_bin.splice(-4,4);
+		//convo_bin.splice(-2,2);
+
+		// If there's a doc in the last Q that you're removing, hold on to it.
+		// And put it back after you've removed it. When you rerender the Q.
+		if (document.getElementById("X-"+path[qn]) && document.getElementById(valueis(path[Qlast]))) {
+			document.getElementById("Xi-"+path[qn]).value = document.getElementById(valueis(path[Qlast])).innerHTML;
+			doc_bin.splice(doc_bin.length-1,1);
+		}
+
+		// If there's a doc in the current Q, remove it.
+		if (docforindex(currentQ)) {
+			console.log("DOC FOUND (current) "+currentQ);
+			doc_bin.splice(doc_bin.length-1,1);
+		}
+		// If there's a doc in the queued up Q, remove it.
+		if (document.getElementById(Dhtml)) {
+			console.log("DOC FOUND (ondeck)"+Dhtml);
+			doc_bin.splice(doc_bin.length-1,1);
+		}
+
+		look4goto(qn,path[path.length-1]);
+
+		if (freetext != 0) {
+			document.getElementById(freetext).value = "";
+		}
+		QNum = qn;
+		loadQ = path[path.length-1];
+		path.splice(-1,1);
+
+		console.log("Reload ans for: "+loadQ);
+		answerQ(loadQ);
+	}
+
+	function transcript(output) {
+		var convo_output = "";
+		for (var i = 0, len = convo_bin.length; i < len; i++) {
+			convo_output += convo_bin[i];
+		}
+		if (output == 1) {
+			return convo_output;
+		} else {
+			return convo_output.replace(/<[^>]*>/g,"");
+		}
+	}
+
+	function doc() {
+		var doc_output = "";
+		for (var i = 0, len = doc_bin.length; i < len; i++) {
+			doc_output += doc_bin[i][0];
+		}
+		return swapvar(doc_output);
+	}
+
+	function json_str() {
+
+		var json_list = "{";
+		for(var i = 0; i < QVnames.length; i++) {
+			if (!document.getElementById("Q-"+QVnames[i][0]).innerHTML.match(/(GOTO:(\d*)(.\s*\d+)*)/)) {
+				if (document.getElementById(QVnames[i][1])) {
+					json_list = json_list+'"'+QVnames[i][1]+'":"'+document.getElementById(QVnames[i][1]).innerHTML+'"';
+				} else {
+					json_list = json_list+'"'+QVnames[i][1]+'":"'+'"';
+				}
+				json_list = json_list+",";
+			}
+			if (i+1 == QVnames.length) {
+				json_list = json_list.replace(/,$/, '');
+				json_list = json_list+"}";
+			}
+		}
+		return json_list;
+	}
+
+	function mail2(to,subject,body) {
+		to = encodeURIComponent(to);
+		subject = encodeURIComponent(subject);
+		body = encodeURIComponent(body);
+		window.location.href = "mailto:"+to+"?subject="+subject+"&body="+body;
+	}
+
+	function submit2(action,method,docAs,instructions,transcriptAs,jsonAs,target) {
+		document.FORM.action = action;
+		document.FORM.method = method;
+		if (target) {
+			document.FORM.target = target;
+		} else {
+			document.FORM.target = "_self";
+		}
+
+		if (docAs) {
+			if (document.getElementsByName(docAs).length == 0) {
+				var doctext = document.createElement("textarea");
+				doctext.style.display ='none';
+				doctext.name= docAs;
+				doctext.value= doc();
+				document.getElementById('FORM').appendChild(doctext);
+			} else {
+				$('textarea[name='+docAs+']').val(json_str())
+			}
+			if (instructions) {
+				if (document.getElementsByName('i').length == 0) {
+					var instructtext = document.createElement("textarea");
+					instructtext.type='hidden';
+					instructtext.style.display ='none';
+					instructtext.name= 'i';
+					instructtext.value= instructions;
+					document.getElementById('FORM').appendChild(instructtext);
+				} else {
+					$('textarea[name=i]').val(json_str())
+				}
+			}
+		}
+		if (transcriptAs) {
+			if (document.getElementsByName(transcriptAs).length == 0) {
+				var ttext = document.createElement("textarea");
+				ttext.type='hidden';
+				ttext.style.display ='none';
+				ttext.name= transcriptAs;
+				ttext.value= transcript();
+				document.getElementById('FORM').appendChild(ttext);
+			} else {
+				$('textarea[name='+transcriptAs+']').val(json_str())
+			}
+		}
+		if (jsonAs) {
+			if (document.getElementsByName(jsonAs).length == 0) {
+				var json = document.createElement("textarea");
+				json.type='hidden';
+				json.style.display ='none';
+				json.name= jsonAs;
+				json.value= json_str();
+				document.getElementById('FORM').appendChild(json);
+			} else {
+				$('textarea[name='+jsonAs+']').val(json_str())
+			}
+		}
+		var ondeckdiv = document.getElementById('ondeck').innerHTML;
+		var rawmarkupdiv = document.getElementById('rawmarkup').innerHTML;
+		document.getElementById('ondeck').innerHTML = "";
+		document.getElementById('rawmarkup').innerHTML = "";
+		document.FORM.submit();
+		document.getElementById('ondeck').innerHTML = ondeckdiv;
+		document.getElementById('rawmarkup').innerHTML = rawmarkupdiv;
+	}
+
+	function csv() {
+		var csv_list = "";
+		for(var i = 0; i < QVnames.length; i++) {
+			if (!document.getElementById("Q-"+QVnames[i][0]).innerHTML.match(/(GOTO:(\d*)(.\s*\d+)*)/)) {
+				csv_list = csv_list+'"'+QVnames[i][1]+'"';
+				csv_list = csv_list+",";
+			}
+			if (i+1 == QVnames.length) {
+				csv_list = csv_list.replace(/,$/, '');
+				csv_list = csv_list+"\n";
+			}
+		}
+		for(var i = 0; i < QVnames.length; i++) {
+			if (!document.getElementById("Q-"+QVnames[i][0]).innerHTML.match(/(GOTO:(\d*)(.\s*\d+)*)/)) {
+				if (document.getElementById(QVnames[i][1])) {
+					csv_list = csv_list+'"'+document.getElementById(QVnames[i][1]).innerHTML+'"';
+				} else {
+					csv_list = csv_list+'""';
+				}
+				csv_list = csv_list+",";
+			}
+			if (i+1 == QVnames.length) {
+				csv_list = csv_list.replace(/,$/, '');
+				csv_list = csv_list+"\n";
+			}
+		}
+
+		return csv_list;
+	}
+
+	function getvar(val) {
+		return document.getElementById(val).value;
+	}
+
+	function goto(val) {
+	   answerQ(indexis(val));
+	}
+
+	// h/t http://runnable.com/U5HC9xtufQpsu5aj/use-javascript-to-save-textarea-as-a-txt-file
+	function save2(filename,content)
+	{
+
+	// I'm using file system support as a proxy for support for this feature.
+	// Check based on one found at: http://blog.teamtreehouse.com/building-an-html5-text-editor-with-the-filesystem-apis
+	// Handle vendor prefixes.
+	window.requestFileSystem = window.requestFileSystem ||
+							   window.webkitRequestFileSystem;
+	// Check for support.
+	if (window.requestFileSystem) {
+	// content = ID of textarea to save
+	// name = name to save file as, including file extension
+	// grab the content of the form field and place it into a variable
+	//    var textToWrite = document.getElementById(content).value;
+	//  create a new Blob (html5 magic) that conatins the data from your form feild
+		var textFileAsBlob = new Blob([content], {type:'text/plain'});
+
+	// Specify the name of the file to be saved
+		var fileNamecontentAs = filename;
+
+	// Optionally allow the user to choose a file name by providing
+	// an imput field in the HTML and using the collected data here
+	// var fileNamecontentAs = txtFileName.text;
+
+	// create a link for our script to 'click'
+		var downloadLink = document.createElement("a");
+	//  supply the name of the file (from the var above).
+	// you could create the name here but using a var
+	// allows more flexability later.
+		downloadLink.download = fileNamecontentAs;
+	// provide text for the link. This will be hidden so you
+	// can actually use anything you want.
+		downloadLink.innerHTML = "My Hidden Link";
+
+	// allow our code to work in webkit & Gecko based browsers
+	// without the need for a if / else block.
+		window.URL = window.URL || window.webkitURL;
+
+	// Create the link Object.
+		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+	// when link is clicked call a function to remove it from
+	// the DOM in case user wants to save a second file.
+		downloadLink.onclick = destroyClickedElement;
+	// make sure the link is hidden.
+		downloadLink.style.display = "none";
+	// add the link to the DOM
+		document.body.appendChild(downloadLink);
+
+	// click the new link
+		downloadLink.click();
+	} else {
+		alert('This feature is not supported by your browser.');
+	}
+
+	}
+
+	function destroyClickedElement(event)
+	{
+	// remove the link from the DOM
+		document.body.removeChild(event.target);
+	}
+
+	// EOF
+
+</script>
+</BODY>
+</HTML>
