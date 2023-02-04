@@ -25,7 +25,7 @@ A: ⚔️ Run a battle
 	A: Everyone has rolled; we have an order
 		Q(ready): Have the first character get ready... GOTO:start_fight
 	A[javascript:goto(dice(20,'another_roll'))]: 🎲 Roll virtual D20
-A: 🎲 Roll a dice
+A: 🎲 Virtual dice
 	Q(pick_dice): Pick one.
 	A[javascript:goto(dice(4,'rolled'))]: 🎲 Roll virtual D4
 	A[javascript:goto(dice(6,'rolled'))]: 🎲 Roll virtual D6
@@ -36,6 +36,7 @@ A: 🎲 Roll a dice
 	A: Back to Main Menu
 		Q(2.3.7):GOTO:start
 A:[https://www.aidedd.org/dnd-filters/monsters.php] 👹 Look up a monster
+	Q(2.4):GOTO:start
 A: 📚 More Resources
 	Q(2.5): Here are some resources I found helpful.
 	A: How to Play D&D (~4m video)
@@ -122,6 +123,9 @@ A: Disadvantage
 		Q(11.3.1):GOTO:compare_attack
 	A[javascript:goto(dice(20,'d20attack2'))]: 🎲 Roll virtual D20
 
+Q(d20attack): <span class="dice"><x>start</x></span>GOTO:d20roll_after
+Q(d20attack2): <span class="dice"><x>start</x></span>GOTO:compare_attack
+
 Q(damageD): <span class="dice"><x>start</x></span>GOTO:damage
 Q(damage): Add the appropriate modifier (e.g., strength for melee OR dexterity for range or fitness). Subtract this value from the target's <i>hit score</i>. GOTO:more_fight
 
@@ -136,6 +140,3 @@ A: Escape
 A: Help
 A: Ready
 A: When I said 'other,' I meant OTHER
-
-Q(d20attack): <span class="dice"><x>start</x></span>GOTO:d20roll_after
-Q(d20attack2): <span class="dice"><x>start</x></span>GOTO:compare_attack
