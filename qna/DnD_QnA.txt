@@ -5,7 +5,7 @@ Description: <a href="https://mastodon.social/@Colarusso" target="_blank">@Colar
 Before:<link rel="stylesheet" type="text/css" href="https://colarusso.github.io/dm/css/style.css">
 <div id="icon"></div>
 <h2 style="text-align:center;">Dungeon Master's Helper</h2>
-<p>Greetings. FWIW, <a href="https://mastodon.social/@Colarusso" target="_blank">@Colarusso</a> built this as a way to learn D&D. <a href="https://github.com/colarusso/dm" target="_blank">The code</a> is on GitHub should you want to craft your own.</p>
+<p>Greetings. FWIW, <a href="https://mastodon.social/@Colarusso" target="_blank">@Colarusso</a> <strike>built</strike> is building this as a way to learn D&D. <a href="https://github.com/colarusso/dm" target="_blank">The code</a> is on GitHub if you want to make your own.</p>
 
 After:
 <script>
@@ -84,7 +84,7 @@ A: Yes
 A[javascript:goto(dice(20,'another_roll'))]: 🎲 No; roll virtual D20 again
 
 
-Q(start_fight): What does the character want to do?
+Q(start_fight): What does the character want to do? Generally they can move & make one action, in any order.
 A: Attack
 	Q(5.1):GOTO:attack
 A: Saving
@@ -100,7 +100,7 @@ A: No
 	Q(6.2):GOTO:fight_over
 
 
-Q(next_fight): What does the <b><i>NEXT</i></b> character want to do?
+Q(next_fight): What does the <b><i>NEXT</i></b> character want to do? Generally they can move & make one action, in any order.
 A: Attack
 	Q(7.1):GOTO:attack
 A: Saving
