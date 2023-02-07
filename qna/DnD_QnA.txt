@@ -9,13 +9,11 @@ Before:<link rel="stylesheet" type="text/css" href="https://colarusso.github.io/
 
 After:
 <script>
-function dice(faces,target){
+function dice(faces,target,combat=0){
 	number = Math.floor(Math.random()*(faces-1))+1
 	if (number<10) {
 		number = " "+number+" "
-	} //else if (number==20) {
-	//	number = " "+number+" <br>Critical Hit"
-	//}
+	}
 	document.getElementById('start').value = number;
 	document.getElementById('start').innerHTML = number;
 	document.getElementById('start').innerText = number;
@@ -32,27 +30,27 @@ function dice(faces,target){
 
 Q(start): What do you want to do?
 A: 🤔 Ability check
-	Q(1.1): Whether or not some novel action (one not described in the rules) happens is up to you and a role of the D20. Set and share the action's <a href="more.html#dc" target="more">Difficult Class</a>.<br>
-<table border=0 width=100% style="margin-top:5px">
+	Q(1.1): As <a href="more.html#dm" target="more">DM</a>, if a <a href="more.html#dc" target="more">difficult class</a> is not set for a given action, you decide what it is.<br>
+<table border=0 width=100% style="margin:5px 0;">
 <tr><td colspan=4><b>Typical Difficult Classes:</b></td></tr>
-<tr><td>Very Easy: </td><td>5 </td><td>| Hard: </td><td>20 </td></tr>
-<tr><td>Easy: </td><td>10     </td><td>| Very Hard: </td><td>25</td></tr>
-<tr><td>Medium: </td><td>15   </td><td>| Nearly Impossible: </td><td>30</td></tr>
+<tr><td>Very Easy: </td><td>5  </td><td>| Hard:              </td><td>20 </td></tr>
+<tr><td>Easy:      </td><td>10 </td><td>| Very Hard:         </td><td>25</td></tr>
+<tr><td>Medium:    </td><td>15 </td><td>| Nearly Impossible: </td><td>30</td></tr>
 </table><br><br>
-Pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#dc" target="more">skill</a>) modifier and share. Then have the character roll.<br>
+You also pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#dc" target="more">skill</a>).<br>
 <table border=0 style="margin-top:5px">
 <tr><td colspan=3><b>Abilities:</b></td></tr>
-<tr><td><a href="more.html#strength" target="more">Strength</a> </td><td>| <a href="more.html#dexterity" target="more">Dexterity</a></td><td>| <a href="more.html#wisdom" target="more">Wisdom</a>   </td></tr>
-<tr><td><a href="more.html#constitution" target="more">Constitution</a> </td><td>| <a href="more.html#intelligence" target="more">Intelligence</a> </td><td>| <a href="more.html#charisma" target="more">Charisma</a></td></tr>
-</table>
+<tr><td><a href="more.html#strength" target="more">Strength</a>         </td><td>| <a href="more.html#dexterity" target="more">Dexterity</a>       </td><td>| <a href="more.html#wisdom" target="more">Wisdom</a>     </td></tr>
+<tr><td><a href="more.html#constitution" target="more">Constitution</a> </td><td>| <a href="more.html#intelligence" target="more">Intelligence</a> </td><td>| <a href="more.html#charisma" target="more">Charisma</a> </td></tr>
+</table><br><br>Share these and have the character roll <a href="more.html#dice" target="more">D20</a>.
 	A: Character has rolled D20
 		Q(dc_advantage): Do they have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 		A: No
-			Q(dc_check): Is the roll plus their modifier higher than the Difficulty Class you choose?
+			Q(dc_check): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class you choose?
 			A: Yes
-				Q(1.1.1.1.1): They succeed!!! Continue with your gameplay.GOTO:start
+				Q(1.1.1.1.1): The action succeeds! Continue with your gameplay.GOTO:start
 			A: No
-				Q(1.1.1.1.2): They fail. Continue with your gameplay.GOTO:start
+				Q(1.1.1.1.2): The action fails. Continue with your gameplay.GOTO:start
 		A: Advantage
 			Q(1.1.1.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
 			A: They made their second roll
@@ -63,10 +61,9 @@ Pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or 
 			A: They made their second roll
 				Q(1.1.1.3.1):GOTO:dc_check
 			A[javascript:goto(dice(20,'abilitycheck1'))]: 🎲 Roll virtual D20
-
 	A[javascript:goto(dice(20,'abilitycheck'))]: 🎲 Roll virtual D20
 A: ⚔️ Combat
-	Q(initiative): Have each character roll a D20 to determine the order of combat. Have them add their <a href="more.html#initiative" target="more">initiative</a> modifier to their rolls. They will play in the order of these numbers, with the highest going first.
+	Q(initiative): Have each character roll a <a href="more.html#dice" target="more">D20</a> to determine the order of combat. Have them add their <a href="more.html#initiative" target="more">initiative</a> modifier to their rolls. They will play in the order of these numbers, the highest going first.
 	A: Everyone has rolled; we have an order
 		Q(ready): Have the first character get ready... GOTO:start_fight
 	A[javascript:goto(dice(20,'another_roll'))]: 🎲 Roll virtual D20
@@ -82,19 +79,23 @@ A: 🎲 Roll virtual dice
 		Q(1.3.7):GOTO:start
 A:[https://www.aidedd.org/dnd-filters/monsters.php] 👹 Look up monsters
 	Q(1.4):GOTO:start
-A: 📚 More Resources
-	Q(1.5): Here are some resources I found helpful when starting out. I think the order below makes sense as a way to ease into things.
-	A:[https://dnd.wizards.com/how-to-play] How to Play D&D (~4m video)
-		Q(1.5.1):GOTO:start
-	A: Simplified Action Flowcharts
-		Q(1.5.2):I found a bunch of flowcharts that helped me explore the gameplay. Mostly they were helpful for showing me what I didn't know. So, don't feel like they have to make sense when you read them so much as put questions in your head.<i>Click for full images.</i>
+A: 📚 Beginner Resources
+	Q(1.5): Here are some resources I found helpful. I think the order below makes sense as a way to ease into things. GOTO:resources
+
+Q(resources): What next?
+A: How to Play D&D (~4m 📹)
+	Q(2.1):This video gives a quick (less than 4 min) explanation of things.<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/ZsPrUwcjxEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>GOTO:resources
+A: Simplified Action Flowcharts
+	Q(2.2):I found flowcharts helpful for exploring gameplay once I had an overview of how things worked. Mostly they showed me what I didn't know. So, don't feel like they have to make sense when you read them so much as put questions in your head.<i>Click for full images.</i>
 <br><br><a href="https://colarusso.github.io/dm/images/flowchart_01.jpg" target="_blank"><img src="https://colarusso.github.io/dm/images/flowchart_01.jpg"/></a><a href="https://www.reddit.com/r/DnD/comments/bazcq2/oc_i_made_an_action_flowchart_to_help_new_players/" target="_blank">Source: HeyitsFan on r/DnD</a>
 <br><br><a href="https://colarusso.github.io/dm/images/flowchart_02.pdf" target="_blank"><img src="https://colarusso.github.io/dm/images/flowchart_02.webp"/></a><a href="https://www.reddit.com/r/DnD/comments/a06rdz/i_made_a_flowchart_to_help_my_party_muddle/" target="_blank">Source: BasiliskXVIII on r/DnD</a>
-		GOTO:start
-	A:[https://dnd.wizards.com/further-resources] Character Sheet Explained (scroll down on new page)
-		Q(1.5.3):GOTO:start
-	A: Back to Main
-		Q(1.5.4):GOTO:start
+	GOTO:resources
+A: Character Sheets Explained
+	Q(2.3): You can find an <a href="https://dnd.wizards.com/further-resources" target="_blank">interactive character sheet</a> on the D&D website. It's not the best mobile experience, and you have to scroll down before you see it. But I found clicking on each of the plus (+) symbols useful for answering some of the questions I had about specifics.<br><br>
+<a href="https://dnd.wizards.com/further-resources" target="_blank"><img src="https://colarusso.github.io/dm/images/character_sheet.png"/></a>
+GOTO:resources
+A: Back to Main
+	Q(2.4):GOTO:start
 
 Q(abilitycheck): <span class="dice"><x>start</x></span>GOTO:dc_advantage
 Q(abilitycheck1): <span class="dice"><x>start</x></span>GOTO:dc_check
@@ -103,149 +104,265 @@ Q(rolled): <span class="dice"><x>start</x></span>GOTO:pick_dice
 
 Q(another_roll): <span class="dice"><x>start</x></span><br><br>Do you have an order of combat?
 A: Yes
-	Q(5.1):GOTO:ready
+	Q(6.1):GOTO:ready
 A[javascript:goto(dice(20,'another_roll'))]: 🎲 No; roll virtual D20 again
 
 
-Q(start_fight): What does the character want to do? Generally, they can move & make one action.
+Q(start_fight): What does the character want to do? Generally, they can move & make one action per turn.
 A: Move
-	Q(6.1):GOTO:move
+	Q(7.1):GOTO:move
 A: Attack
-	Q(6.2):GOTO:attack
-A: Saving throw
-	Q(6.3):GOTO:save
+	Q(7.2):GOTO:attack
 A: Other
-	Q(6.4):GOTO:other
+	Q(7.3):GOTO:other
 
 
 Q(more_fight): Does the character have any remaining actions?
 A: Yes
-	Q(7.1):GOTO:start_fight
+	Q(8.1):GOTO:start_fight
 A: No
-	Q(7.2):GOTO:fight_over
+	Q(8.2):GOTO:fight_over
 
 
-Q(move): They can move any distance up to their movement speed, assuming no obstructions, impediments, or the like (separate from their action). GOTO:more_fight
+Q(move): They can move any distance up to their movement <a href="more.html"speed" target="more">speed</a>, assuming no obstructions, impediments, or the like. GOTO:more_fight
 
 
-Q(next_fight): What does the <b><i>NEXT</i></b> character want to do? Generally they can move & make one action.
+Q(next_fight): What does the <b><i>NEXT</i></b> character want to do? Generally they can move & make one action per turn.
 A: Move
-	Q(9.1):GOTO:move
+	Q(10.1):GOTO:move
 A: Attack
-	Q(9.2):GOTO:attack
-A: Saving throw
-	Q(9.3):GOTO:save
+	Q(10.2):GOTO:attack
 A: Other
-	Q(9.4):GOTO:other
+	Q(10.3):GOTO:other
 
 Q(fight_over): Is the battle over?
 A: Yes
-	Q(10.1):Great. If you were victorious, divide any <a href="more.html"xp" target="more">XP</a> among your party. GOTO:start
+	Q(11.1): If you haven't already, divide any <a href="more.html"xp" target="more">XP</a> among your party, and see if anyone has <a href="more.html#levelup" target="more">leveled up</a> GOTO:start
 A: No
-	Q(10.2):GOTO:next_fight
+	Q(11.2):GOTO:next_fight
 
-Q(save): (sometimes available) [under construction]
+Q(save): Have the target of the spell perform the appropriate ability check, noted in the spell's description.
+A: Character has rolled D20
+	Q(saving_advantage): Do the have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+	A: No
+		Q(saving): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class?
+		A: Yes
+			Q(12.1.1.1): They succeed. However, with a spell this may just lesson their damage. GOTO:spell_calc_D
+		A: No
+			Q(12.1.1.2): They fail. :( GOTO:spell_calc_D
+	A: Advantage
+		Q(12.1.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+		A: They made their second roll
+			Q(12.1.2.1):GOTO:saving
+		A[javascript:goto(dice(20,'savingcheck1'))]: 🎲 Roll virtual D20
+	A: Disadvantage
+		Q(12.1.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+		A: They made their second roll
+			Q(12.1.3.1):GOTO:saving
+		A[javascript:goto(dice(20,'savingcheck1'))]: 🎲 Roll virtual D20
+A[javascript:goto(dice(20,'savingcheck'))]: 🎲 Roll virtual D20
+
+Q(savingcheck): <span class="dice"><x>start</x></span>GOTO:saving_advantage
+Q(savingcheck1): <span class="dice"><x>start</x></span>GOTO:saving
 
 
 Q(attack): Weapon or spell?
 A: Weapon
-	Q(12.1):GOTO:weapon
+	Q(15.1):GOTO:weapon
 A: Spell
-	Q(12.2):GOTO:spell
-
-
+	Q(15.2):GOTO:spell
 
 
 Q(weapon): Have them roll D20.
 A: They rolled
-	Q(13.1):GOTO:d20roll_after
-A[javascript:goto(dice(20,'d20attack'))]: Roll virtual D20
+	Q(16.1):GOTO:d20roll_after
+A[javascript:goto(dice(20,'d20attack'))]: 🎲 Roll virtual D20
 
 
 Q(d20roll_after): Do they have an <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 A: No
-	Q(compare_attack): Add any <i>weapon proficiency</i> to the roll.<br><br>Is this number larger than their target's Armor Class?
+	Q(compare_attack): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the <a href="more.html#armorclass" target="more">armor class</a>?
 	A: Yes
-		Q(14.1.1):<img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!!<br><br>To determine the damage have them roll the <a href="more.html#damage" target="more">appropriate weapon dice the appropriate amount of times</a>.
-		A: They rolled
-			Q(14.1.1.1):GOTO:damage
-		A[javascript:goto(dice(4,'damageD'))]: 🎲 Roll virtual D4
-		A[javascript:goto(dice(6,'damageD'))]: 🎲 Roll virtual D6
-		A[javascript:goto(dice(8,'damageD'))]: 🎲 Roll virtual D8
-		A[javascript:goto(dice(10,'damageD'))]: 🎲 Roll virtual D10
-		A[javascript:goto(dice(12,'damageD'))]: 🎲 Roll virtual D12
-
+		Q(17.1.1):<img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!! GOTO:calc_D
 	A: No
-		Q(14.1.2):They miss.GOTO:more_fight
+		Q(17.1.2):They miss.GOTO:more_fight
 A: Advantage
-	Q(14.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+	Q(17.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
 	A: They made their second roll
-		Q(14.2.1):GOTO:compare_attack
+		Q(17.2.1):GOTO:compare_attack
 	A[javascript:goto(dice(20,'d20attack2'))]: 🎲 Roll virtual D20
 A: Disadvantage
-	Q(14.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+	Q(17.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
 	A: They made their second roll
-		Q(14.3.1):GOTO:compare_attack
+		Q(17.3.1):GOTO:compare_attack
 	A[javascript:goto(dice(20,'d20attack2'))]: 🎲 Roll virtual D20
 
 Q(d20attack): <span class="dice"><x>start</x></span>GOTO:d20roll_after
 Q(d20attack2): <span class="dice"><x>start</x></span>GOTO:compare_attack
 
-Q(damageD): <span class="dice"><x>start</x></span><br><br>Move on or make more rolls.
-A: Move on
-	Q(17.1):GOTO:damage
+Q(calc_D): To determine the damage have them roll the <a href="more.html#damage" target="more">appropriate dice the appropriate amount of times</a>.
+A: They rolled
+	Q(20.1):GOTO:damage
 A[javascript:goto(dice(4,'damageD'))]: 🎲 Roll virtual D4
 A[javascript:goto(dice(6,'damageD'))]: 🎲 Roll virtual D6
 A[javascript:goto(dice(8,'damageD'))]: 🎲 Roll virtual D8
 A[javascript:goto(dice(10,'damageD'))]: 🎲 Roll virtual D10
 A[javascript:goto(dice(12,'damageD'))]: 🎲 Roll virtual D12
 
+Q(damageD): <span class="dice"><x>start</x></span><br><br>Move on or make more rolls.
+A: Move on
+	Q(21.1):GOTO:damage
+A[javascript:goto(dice(4,'damageD'))]: 🎲 Roll virtual D4
+A[javascript:goto(dice(6,'damageD'))]: 🎲 Roll virtual D6
+A[javascript:goto(dice(8,'damageD'))]: 🎲 Roll virtual D8
+A[javascript:goto(dice(10,'damageD'))]: 🎲 Roll virtual D10
+A[javascript:goto(dice(12,'damageD'))]: 🎲 Roll virtual D12
 
 Q(damage): Add the appropriate modifier (e.g., strength for melee OR dexterity for range or fitness). Subtract this value from the target's <i>hit score</i>. Narrate the outcome.GOTO:more_fight
 
 
-Q(spell): [Under construction]
+Q(spell_calc_D): To determine the damage have them roll the <a href="more.html#damage" target="more">appropriate dice the appropriate amount of times</a>.
+A: They rolled (if need be)
+	Q(23.1):GOTO:spell_damage
+A[javascript:goto(dice(4,'spell_damageD'))]: 🎲 Roll virtual D4
+A[javascript:goto(dice(6,'spell_damageD'))]: 🎲 Roll virtual D6
+A[javascript:goto(dice(8,'spell_damageD'))]: 🎲 Roll virtual D8
+A[javascript:goto(dice(10,'spell_damageD'))]: 🎲 Roll virtual D10
+A[javascript:goto(dice(12,'spell_damageD'))]: 🎲 Roll virtual D12
+
+Q(spell_damageD): <span class="dice"><x>start</x></span><br><br>Move on or make more rolls.
+A: Move on
+	Q(24.1):GOTO:spell_damage
+A[javascript:goto(dice(4,'spell_damageD'))]: 🎲 Roll virtual D4
+A[javascript:goto(dice(6,'spell_damageD'))]: 🎲 Roll virtual D6
+A[javascript:goto(dice(8,'spell_damageD'))]: 🎲 Roll virtual D8
+A[javascript:goto(dice(10,'spell_damageD'))]: 🎲 Roll virtual D10
+A[javascript:goto(dice(12,'spell_damageD'))]: 🎲 Roll virtual D12
+
+Q(spell_damage): Add the appropriate modifier and follow the instructions for the spell. Narrate the outcome. GOTO:more_fight
+
+
+Q(spell): "Spell-attack" or "spell-save"?
+A: Attack
+	Q(26.1): Have them roll D20.
+	A: They rolled
+		Q(26.1.1):GOTO:d20roll_after
+	A[javascript:goto(dice(20,'spell_d20attack'))]: 🎲 Roll virtual D20
+A: Save
+	Q(26.2):GOTO:save
+
+Q(spell_d20roll_after): Do they have an <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+A: No
+	Q(spell_compare_attack): Add modifiers and any bonus to the roll.<br><br>Is this number equal to or larger than their target's Armor Class?
+	A: Yes
+		Q(27.1.1):<img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!! GOTO:calc_D
+	A: No
+		Q(27.1.2):They miss.GOTO:more_fight
+A: Advantage
+	Q(27.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+	A: They made their second roll
+		Q(27.2.1):GOTO:spell_compare_attack
+	A[javascript:goto(dice(20,'spell_d20attack2'))]: 🎲 Roll virtual D20
+A: Disadvantage
+	Q(27.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+	A: They made their second roll
+		Q(27.3.1):GOTO:compare_attack
+	A[javascript:goto(dice(20,'spell_d20attack2'))]: 🎲 Roll virtual D20
+
+Q(spell_d20attack): <span class="dice"><x>start</x></span>GOTO:d20roll_after
+Q(spell_d20attack2): <span class="dice"><x>start</x></span>GOTO:compare_attack
 
 
 Q(other): What do they want to do? <i>NOTE: you can click through and click back to see more about each option.</i>
 A: Cast a spell
-	Q(20.1): Many non-attacking spells have a casting time of one action. If they can cast such spells it can be done here. GOTO:more_fight
+	Q(30.1): Many non-attacking spells have a casting time of one action. If they can cast such spells, they may do so here. If they want to cast an attack spell, use the <i>GO BACK</i> button and choose <i>Attack</i>. GOTO:more_fight
 A: Dash (extra speed for this turn)
-	Q(20.2):They can move twice as far as usual, using up their action. GOTO:more_fight
+	Q(30.2):They can move twice as far as usual, using up their action. GOTO:more_fight
 A: Disengage (move away)
-	Q(20.3):They move away from their enemy, using up their action, and they are not open up to attacks of opportunity for this turn.GOTO:more_fight
+	Q(30.3):They move away from their opponent, using up their action, and they are not open up to attacks of opportunity for this turn.GOTO:more_fight
 A: Dodge
-	Q(20.4): Until their next turn attacks against them are at <a href="more.html#disadvantage" target="more">disadvantage</a>, and they have <a href="more.html#advantage" target="more">advantage</a> for any saving throws requiring dexterity. GOTO:more_fight
-A: Help (give advantage)
-	Q(20.5): Give an ally within 5 feet <a href="more.html#advantage" target="more">advantage</a> for their next attack. GOTO:more_fight
+	Q(30.4): Until their next turn, attacks against them are at <a href="more.html#disadvantage" target="more">disadvantage</a>, and they have <a href="more.html#advantage" target="more">advantage</a> for any saving throws requiring dexterity. GOTO:more_fight
 A: Hide
-	Q(20.6): Make a <i>stealth check</i> to hide. Enemies may make a perception check to find/see them. GOTO:more_fight
-A: Ready (set trigger)
-	Q(20.7): They may ready an action to take based on some trigger (e.g., I will do X when the enemy gets within ten feet). GOTO:more_fight
-A: Escape (from grapple)
-	Q(20.8): Perform a D20 Athletics contest with the enemy (i.e., both roll D20) to see if you escape the grapple. GOTO:more_fight
-A: When I said 'other,' I meant OTHER
-	Q(20.9): As DM, set the Difficulty Class and modifier, then have them roll D20.
+	Q(30.5): Have them make a <i>stealth check</i> to hide after picking a difficulty class. Others may make a perception check to find/see them.
 	A: Character has rolled D20
-		Q(other_advantage): Do the have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+		Q(hide_advantage): Do they have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+		A: No
+			Q(hide): Is the roll plus their modifier higher than the Difficulty Class you choose?
+			A: Yes
+				Q(30.5.1.1.1): The character is hidden. Remember, others may make a perception check to find/see them. GOTO:more_fight
+			A: No
+				Q(30.5.1.1.2): They fail to hide. :( GOTO:more_fight
+		A: Advantage
+			Q(30.5.1.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+			A: They made their second roll
+				Q(30.5.1.2.1):GOTO:hide
+			A[javascript:goto(dice(20,'hidercheck1'))]: 🎲 Roll virtual D20
+		A: Disadvantage
+			Q(30.5.1.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+			A: They made their second roll
+				Q(30.5.1.3.1):GOTO:hide
+			A[javascript:goto(dice(20,'hidercheck1'))]: 🎲 Roll virtual D20
+	A[javascript:goto(dice(20,'hidercheck'))]: 🎲 Roll virtual D20
+
+A: Help (give advantage)
+	Q(30.6): Give an ally within 5 feet <a href="more.html#advantage" target="more">advantage</a> for their next attack. GOTO:more_fight
+A: Ready (set trigger)
+	Q(30.7): They may ready an action that will take place at some later time based on some trigger (e.g., I will do X when the enemy gets within ten feet). GOTO:more_fight
+A: Escape (from grapple)
+	Q(30.8): Perform a D20 <i>athletics</i> contest with their opponent. They both roll D20 and the character with the highest roll plus modifier (including bonus) wins.
+	A: Both characters have rolled their D20s, taking into account advantage & disadvantage
+		Q(30.8.1):GOTO:grapple_1
+	A[javascript:goto(dice(20,'grapple_0'))]: 🎲 Roll virtual D20 for 1st Character
+A: When I said 'other,' I meant OTHER
+	Q(30.9): As DM, set the Difficulty Class and relevant ability/skill, then have them roll D20.
+	A: Character has rolled D20
+		Q(other_advantage): Do they have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 		A: No
 			Q(i_said_other): Is the roll plus their modifier higher than the Difficulty Class you choose?
 			A: Yes
-				Q(20.9.1.1.1): They succeed!!!GOTO:more_fight
+				Q(30.9.1.1.1): They succeed!!!GOTO:more_fight
 			A: No
-				Q(20.9.1.1.2): They fail. :( GOTO:more_fight
+				Q(30.9.1.1.2): They fail. :( GOTO:more_fight
 		A: Advantage
-			Q(20.9.1.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+			Q(30.9.1.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
 			A: They made their second roll
-				Q(20.9.1.2.1):GOTO:i_said_other
+				Q(30.9.1.2.1):GOTO:i_said_other
 			A[javascript:goto(dice(20,'othercheck1'))]: 🎲 Roll virtual D20
 		A: Disadvantage
-			Q(20.9.1.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+			Q(30.9.1.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
 			A: They made their second roll
-				Q(20.9.1.3.1):GOTO:i_said_other
+				Q(30.9.1.3.1):GOTO:i_said_other
 			A[javascript:goto(dice(20,'othercheck1'))]: 🎲 Roll virtual D20
-
 	A[javascript:goto(dice(20,'othercheck'))]: 🎲 Roll virtual D20
+
+Q(grapple_0): Dose the <b>first</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+A: No
+	Q(31.1): Roll D20 for <b>second</b> character.
+	A[javascript:goto(dice(20,'grapple_0b))]: 🎲 Roll virtual D20
+A: Advantage
+	Q(31.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+	A[javascript:goto(dice(20,'grapple_0b'))]: 🎲 Roll virtual D20
+A: Disadvantage
+	Q(31.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+	A[javascript:goto(dice(20,'grapple_0b'))]: 🎲 Roll virtual D20
+
+
+Q(grapple_0b): Dose the <b>second</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+A: No
+	Q(32.1):GOTO:grapple_1
+A: Advantage
+	Q(32.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
+	A[javascript:goto(dice(20,'grapple_1'))]: 🎲 Roll virtual D20
+A: Disadvantage
+	Q(32.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
+	A[javascript:goto(dice(20,'grapple_1'))]: 🎲 Roll virtual D20
+
+
+Q(grapple_1): The character with the higher roll + stealth modifier wins! GOTO:more_fight
+
+Q(hidercheck): <span class="dice"><x>start</x></span>GOTO:hide_advantage
+Q(hidercheck1): <span class="dice"><x>start</x></span>GOTO:hide
+
 
 Q(othercheck): <span class="dice"><x>start</x></span>GOTO:other_advantage
 Q(othercheck1): <span class="dice"><x>start</x></span>GOTO:i_said_other
