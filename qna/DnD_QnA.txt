@@ -30,14 +30,14 @@ function dice(faces,target,combat=0){
 
 Q(start): What do you want to do?
 A: 🤔 Ability check
-	Q(1.1): As <a href="more.html#dm" target="more">DM</a>, if a <a href="more.html#dc" target="more">difficult class</a> is not set for a given action, you decide what it is.<br>
+	Q(1.1): As <a href="more.html#dm" target="more">DM</a>, if a <a href="more.html#dc" target="more">difficulty class</a> is not set for a given action, you decide what it is.<br>
 <table border=0 width=100% style="margin:5px 0;">
-<tr><td colspan=4><b>Typical Difficult Classes:</b></td></tr>
+<tr><td colspan=4><b>Typical Difficulty Classes:</b></td></tr>
 <tr><td>Very Easy: </td><td>5  </td><td>| Hard:              </td><td>20 </td></tr>
 <tr><td>Easy:      </td><td>10 </td><td>| Very Hard:         </td><td>25</td></tr>
 <tr><td>Medium:    </td><td>15 </td><td>| Nearly Impossible: </td><td>30</td></tr>
 </table><br><br>
-You also pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#dc" target="more">skill</a>).<br>
+You also pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#dc" target="more">skill</a>) to act as a <a href="more.html#modifier" target="more">modifier</a>.<br>
 <table border=0 style="margin-top:5px">
 <tr><td colspan=3><b>Abilities:</b></td></tr>
 <tr><td><a href="more.html#strength" target="more">Strength</a>         </td><td>| <a href="more.html#dexterity" target="more">Dexterity</a>       </td><td>| <a href="more.html#wisdom" target="more">Wisdom</a>     </td></tr>
@@ -46,7 +46,7 @@ You also pick an appropriate <a href="more.html#abilities" target="more">ability
 	A: Character has rolled D20
 		Q(dc_advantage): Do they have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 		A: No
-			Q(dc_check): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class you choose?
+			Q(dc_check): Is the roll plus their modifier, plus any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class you choose?
 			A: Yes
 				Q(1.1.1.1.1): The action succeeds! Continue with your gameplay.GOTO:start
 			A: No
@@ -94,8 +94,10 @@ A: Character Sheets Explained
 	Q(2.3): You can find an <a href="https://dnd.wizards.com/further-resources" target="_blank">interactive character sheet</a> on the D&D website. It's not the best mobile experience, and you have to scroll down before you see it. But I found clicking on each of the plus (+) symbols useful for answering some of the questions I had about specifics.<br><br>
 <a href="https://dnd.wizards.com/further-resources" target="_blank"><img src="https://colarusso.github.io/dm/images/character_sheet.png"/></a>
 GOTO:resources
+A:[https://colarusso.github.io/dm/more.html] The DM's Helper Glossary
+	Q(2.4):GOTO:resources
 A: Back to Main
-	Q(2.4):GOTO:start
+	Q(2.5):GOTO:start
 
 Q(abilitycheck): <span class="dice"><x>start</x></span>GOTO:dc_advantage
 Q(abilitycheck1): <span class="dice"><x>start</x></span>GOTO:dc_check
@@ -145,9 +147,9 @@ Q(save): Have the target of the spell perform the appropriate ability check, not
 A: Character has rolled D20
 	Q(saving_advantage): Do the have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 	A: No
-		Q(saving): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class?
+		Q(saving): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, plus any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the difficulty class?
 		A: Yes
-			Q(12.1.1.1): They succeed. However, with a spell this may just lesson their damage. GOTO:spell_calc_D
+			Q(12.1.1.1): They succeed. However, with a spell this may just lessen their damage. GOTO:spell_calc_D
 		A: No
 			Q(12.1.1.2): They fail. :( GOTO:spell_calc_D
 	A: Advantage
@@ -181,7 +183,7 @@ A[javascript:goto(dice(20,'d20attack'))]: 🎲 Roll virtual D20
 
 Q(d20roll_after): Do they have an <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 A: No
-	Q(compare_attack): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, including any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the <a href="more.html#armorclass" target="more">armor class</a>?
+	Q(compare_attack): Is the roll plus their <a href="more.html#modifier" target="more">modifier</a>, plus any applicable <a href="more.html#bonus" target="more">bonus</a>  (e.g., <a href="more.html#proficiency" target="more">proficiency</a>) equal or higher than the <a href="more.html#armorclass" target="more">armor class</a>?
 	A: Yes
 		Q(17.1.1):<img src='https://media.tenor.com/RD9V1mRxJUkAAAAC/thor-yes.gif'/><br><br>It's a hit!!!! GOTO:calc_D
 	A: No
@@ -309,16 +311,16 @@ A: Help (give advantage)
 A: Ready (set trigger)
 	Q(30.7): They may ready an action that will take place at some later time based on some trigger (e.g., I will do X when the enemy gets within ten feet). GOTO:more_fight
 A: Escape (from grapple)
-	Q(30.8): Perform a D20 <i>athletics</i> contest with their opponent. They both roll D20 and the character with the highest roll plus modifier (including bonus) wins.
+	Q(30.8): Perform a D20 <i>athletics</i> contest with their opponent. They both roll D20 and the character with the highest roll plus modifier (plus bonus) wins.
 	A: Both characters have rolled their D20s, taking into account advantage & disadvantage
 		Q(30.8.1):GOTO:grapple_1
 	A[javascript:goto(dice(20,'grapple_0'))]: 🎲 Roll virtual D20 for 1st Character
 A: When I said 'other,' I meant OTHER
-	Q(30.9): As DM, set the Difficulty Class and relevant ability/skill, then have them roll D20.
+	Q(30.9): As DM, set the difficulty class and relevant ability/skill, then have them roll D20.
 	A: Character has rolled D20
 		Q(other_advantage): Do they have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 		A: No
-			Q(i_said_other): Is the roll plus their modifier higher than the Difficulty Class you choose?
+			Q(i_said_other): Is the roll plus their modifier, plus any bonuses, equal or higher than the difficulty class you choose?
 			A: Yes
 				Q(30.9.1.1.1): They succeed!!!GOTO:more_fight
 			A: No
@@ -335,30 +337,33 @@ A: When I said 'other,' I meant OTHER
 			A[javascript:goto(dice(20,'othercheck1'))]: 🎲 Roll virtual D20
 	A[javascript:goto(dice(20,'othercheck'))]: 🎲 Roll virtual D20
 
-Q(grapple_0): Dose the <b>first</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+Q(grapple_0): <span class="dice"><x>start</x></span><br><br> Does the <b>first</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 A: No
-	Q(31.1): Roll D20 for <b>second</b> character.
-	A[javascript:goto(dice(20,'grapple_0b))]: 🎲 Roll virtual D20
+	Q(grapple_second): Roll D20 for <b>second</b> character.
+	A[javascript:goto(dice(20,'grapple_b'))]: 🎲 Roll virtual D20
 A: Advantage
 	Q(31.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
-	A[javascript:goto(dice(20,'grapple_0b'))]: 🎲 Roll virtual D20
+	A[javascript:goto(dice(20,'grapple_0a'))]: 🎲 Roll virtual D20
 A: Disadvantage
 	Q(31.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
-	A[javascript:goto(dice(20,'grapple_0b'))]: 🎲 Roll virtual D20
+	A[javascript:goto(dice(20,'grapple_0a'))]: 🎲 Roll virtual D20
 
 
-Q(grapple_0b): Dose the <b>second</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
+Q(grapple_b): <span class="dice"><x>start</x></span><br><br> Does the <b>second</b> character have <a href="more.html#advantage" target="more">advantage</a> or <a href="more.html#disadvantage" target="more">disadvantage</a>?
 A: No
 	Q(32.1):GOTO:grapple_1
 A: Advantage
 	Q(32.2): Have them roll a second time, and use the <i>higher</i> of the two numbers as their roll.
-	A[javascript:goto(dice(20,'grapple_1'))]: 🎲 Roll virtual D20
+	A[javascript:goto(dice(20,'grapple_1a'))]: 🎲 Roll virtual D20
 A: Disadvantage
 	Q(32.3): Have them roll a second time, and use the <i>lower</i> of the two numbers as their roll.
-	A[javascript:goto(dice(20,'grapple_1'))]: 🎲 Roll virtual D20
+	A[javascript:goto(dice(20,'grapple_1a'))]: 🎲 Roll virtual D20
 
+Q(grapple_0a): <span class="dice"><x>start</x></span> GOTO:grapple_second
 
-Q(grapple_1): The character with the higher roll + stealth modifier wins! GOTO:more_fight
+Q(grapple_1a): <span class="dice"><x>start</x></span> GOTO:grapple_1
+
+Q(grapple_1): The character with the higher roll + athletics modifier wins! GOTO:more_fight
 
 Q(hidercheck): <span class="dice"><x>start</x></span>GOTO:hide_advantage
 Q(hidercheck1): <span class="dice"><x>start</x></span>GOTO:hide
