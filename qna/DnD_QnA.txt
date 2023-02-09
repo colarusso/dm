@@ -10,7 +10,11 @@ Before:<link rel="stylesheet" type="text/css" href="https://colarusso.github.io/
 After:
 <script>
 function dice(faces,target,combat=0){
-	number = Math.floor(Math.random()*(faces-1))+1
+	if (faces==10 ) {
+		number = Math.floor(Math.random()*faces)
+	} else {
+		number = Math.floor(Math.random()*(faces-1))+1
+	}
 	if (number<10) {
 		number = " "+number+" "
 	}
@@ -37,7 +41,7 @@ A: 🤔 Ability check
 <tr><td>Easy:      </td><td>10 </td><td>| Very Hard:         </td><td>25</td></tr>
 <tr><td>Medium:    </td><td>15 </td><td>| Nearly Impossible: </td><td>30</td></tr>
 </table><br><br>
-You also pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#dc" target="more">skill</a>) to act as a <a href="more.html#modifier" target="more">modifier</a>.<br>
+You also pick an appropriate <a href="more.html#abilities" target="more">ability</a> (or <a href="more.html#abilities" target="more">skill</a>) to act as a <a href="more.html#modifier" target="more">modifier</a>.<br>
 <table border=0 style="margin-top:5px">
 <tr><td colspan=3><b>Abilities:</b></td></tr>
 <tr><td><a href="more.html#strength" target="more">Strength</a>         </td><td>| <a href="more.html#dexterity" target="more">Dexterity</a>       </td><td>| <a href="more.html#wisdom" target="more">Wisdom</a>     </td></tr>
@@ -84,7 +88,7 @@ A: 📚 Beginner Resources
 
 Q(resources): What next?
 A: How to Play D&D (~4m 📹)
-	Q(2.1):This video gives a quick (less than 4 min) explanation of things.<br><br><iframe width="560" height="315" src="https://www.youtube.com/embed/ZsPrUwcjxEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>GOTO:resources
+	Q(2.1):This video gives a quick (less than 4 min) explanation of things.<br><br><iframe width="100%" src="https://www.youtube.com/embed/ZsPrUwcjxEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>GOTO:resources
 A: Simplified Action Flowcharts
 	Q(2.2):I found flowcharts helpful for exploring gameplay once I had an overview of how things worked. Mostly they showed me what I didn't know. So, don't feel like they have to make sense when you read them so much as put questions in your head.<i>Click for full images.</i>
 <br><br><a href="https://colarusso.github.io/dm/images/flowchart_01.jpg" target="_blank"><img src="https://colarusso.github.io/dm/images/flowchart_01.jpg"/></a><a href="https://www.reddit.com/r/DnD/comments/bazcq2/oc_i_made_an_action_flowchart_to_help_new_players/" target="_blank">Source: HeyitsFan on r/DnD</a>
@@ -94,7 +98,7 @@ A: Character Sheets Explained
 	Q(2.3): You can find an <a href="https://dnd.wizards.com/further-resources" target="_blank">interactive character sheet</a> on the D&D website. It's not the best mobile experience, and you have to scroll down before you see it. But I found clicking on each of the plus (+) symbols useful for answering some of the questions I had about specifics.<br><br>
 <a href="https://dnd.wizards.com/further-resources" target="_blank"><img src="https://colarusso.github.io/dm/images/character_sheet.png"/></a>
 GOTO:resources
-A:[https://colarusso.github.io/dm/more.html] The DM's Helper Glossary
+A:[more.html] The DM's Helper Glossary
 	Q(2.4):GOTO:resources
 A: Back to Main
 	Q(2.5):GOTO:start
